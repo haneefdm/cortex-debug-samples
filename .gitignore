@@ -1,36 +1,7 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
 *.exe
 *.out
 *.app
-demo/.DS_Store
-demo/.vscode/.cortex-debug.peripherals.state.json
-demo/.vscode/.cortex-debug.registers.state.json
-demo/.vscode/launch.json~
+.DS_Store
+.cortex-debug.peripherals.state.json
+.cortex-debug.registers.state.json
+*~
