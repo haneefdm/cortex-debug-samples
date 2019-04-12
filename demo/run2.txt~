@@ -1,0 +1,14 @@
+monitor reset init
+monitor reset run
+monitor sleep 200
+monitor psoc6 reset_halt sysresetreq
+echo PC just after second reset\n
+print $pc
+monitor reg pc
+tb main
+continue
+echo PC after first continue\n
+print $pc
+continue
+echo PC after second continue\n
+print $pc

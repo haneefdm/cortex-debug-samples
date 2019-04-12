@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+demo/.DS_Store
+demo/.vscode/.cortex-debug.peripherals.state.json
+demo/.vscode/.cortex-debug.registers.state.json
+demo/.vscode/launch.json~

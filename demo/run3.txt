@@ -1,0 +1,7 @@
+monitor reset halt
+monitor psoc6 reset_halt sysresetreq
+echo PC just after second reset\n
+print $pc
+monitor reg pc
+tb main
+run

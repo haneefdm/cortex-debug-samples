@@ -1,0 +1,11 @@
+file main_final.elf
+target extended-remote localhost:50000
+monitor reset init
+load
+monitor reset run
+monitor sleep 200
+monitor psoc6 reset_halt sysresetreq
+print $pc
+tb main
+continue
+

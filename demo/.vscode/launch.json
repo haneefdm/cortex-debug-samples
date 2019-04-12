@@ -1,0 +1,323 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version":"0.2.0",
+    "configurations": [
+        {
+            "cwd": "${workspaceRoot}",
+            "executable": "main_final.elf",
+            "name": "PSoC6 CM4 (OpenOCD)",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "searchDir": [ 
+                "${workspaceRoot}",
+                "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/"
+            ],
+            "configFiles": [
+                //"interface/kitprog3.cfg",
+                //"target/psoc6.cfg"
+                "openocd.tcl"
+            ],
+            "preLaunchCommands": [
+                "set mem inaccessible-by-default off",
+            ],
+            "postLaunchCommands": [
+                "monitor reset run",
+                "monitor sleep 200",
+                "monitor psoc6 reset_halt sysresetreq"
+            ],
+            "postRestartCommands": [
+                /*
+                // Following three commands are needed because Cortex-Debug is hardcoded to do a 'monitor reset halt'
+                // Creates a problem for multi core systems like PSoC6, so this is a workaround. Normally, only a
+                // sysresetreq is needed for PSoc6
+                */
+                "monitor reset run",
+                "monitor sleep 200",
+                "monitor psoc6 reset_halt sysresetreq",
+                /*
+                // Following two commands are needed to get gdb and openocd and HW all in sync.
+                // Or, execution context (PC, stack, registers, etc.) look like they are from before reset.
+                // The stepi, is a pretend instruction that does not actually do a stepi, but MUST be done
+                // Its a documented workaround in openocd. Do a 'monitor help' to see more info
+                */
+                "monitor gdb_sync",
+                "stepi"
+            ],
+
+            // Optional entries
+            // svdFiles can be very large.
+            "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            "runToMain": false,         // if true, program will halt at main. Only for fresh starts, not a restart
+            "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
+            "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
+        },
+        {
+            "name": "gdb (PyOCD)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/main_final.elf",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceRoot}",
+            "environment": [],
+            "externalConsole": false,
+            "debugServerArgs": "",
+            "serverLaunchTimeout": 20000,
+            "filterStderr": true,
+            "filterStdout": false,
+            //"preLaunchTask": "make",
+            "serverStarted": "GDB\\ server\\ started",
+            "setupCommands": [
+                { "text": "-environment-cd ${workspaceRoot}" },
+                { "text": "-target-select remote localhost:3334", "description": "connect to target", "ignoreFailures": false },
+                { "text": "-file-exec-and-symbols main_final.elf", "description": "load file", "ignoreFailures": false},
+                { "text": "-interpreter-exec console \"monitor endian little\"", "ignoreFailures": false },
+                { "text": "-interpreter-exec console \"monitor reset\"", "ignoreFailures": false },
+                { "text": "-interpreter-exec console \"monitor halt\"", "ignoreFailures": false },
+                { "text": "-interpreter-exec console \"monitor arm semihosting enable\"", "ignoreFailures": false },
+                { "text": "-target-download", "description": "flash target", "ignoreFailures": false },
+                { "text": "-interpreter-exec console \"monitor reset\"", "ignoreFailures": false },
+                { "text": "-enable-pretty-printing" }
+            ],
+            "logging": {
+                "moduleLoad": true,
+                "traceResponse": true,
+                "trace": true,
+                "engineLogging": true,
+                "programOutput": true,
+                "exceptions": true
+            },
+            "linux": {
+                "MIMode": "gdb",
+                "MIDebuggerPath": "arm-none-eabi-gdb",
+                "debugServerPath": "pyocd-gdbserver"
+            },
+            "osx": {
+                "MIMode": "gdb",
+                "MIDebuggerPath": "arm-none-eabi-gdb",
+                "debugServerPath": "pyocd-gdbserver"
+            },
+            "windows": {
+                //"preLaunchTask": "make.exe",
+                "MIMode": "gdb",
+                //"MIDebuggerPath": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\4.9 2015q3\\bin\\arm-none-eabi-gdb.exe",
+                "MIDebuggerPath": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\6 2017-q2-update\\bin\\arm-none-eabi-gdb.exe",
+                "debugServerPath": "pyocd-gdbserver.exe",
+            }
+        },
+        {
+            "name": "gdb (OpenOCD)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/main_final.elf",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceRoot}",
+            "environment": [],
+            "externalConsole": false,
+            "debugServerArgs": "-s ${workspaceRoot} -s /Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl",
+            "serverLaunchTimeout": 20000,
+            "filterStderr": false,
+            "filterStdout": false,
+            //"preLaunchTask": "make",
+            "serverStarted": "Info :.*Listening on port [0-9]+ for gdb connections",
+            "setupCommands": [
+                { "text": "-environment-cd ${workspaceRoot}" },
+                { "text": "-target-select extended-remote localhost:3333", "description": "connect to target", "ignoreFailures": false },
+                { "text": "-file-exec-and-symbols main_final.elf", "description": "load file", "ignoreFailures": false},
+                { "text": "-interpreter-exec console \"monitor reset init\""},
+                { "text": "-target-download", "description": "flash target", "ignoreFailures": false },
+                { "text": "-interpreter-exec console \"monitor reset run\""},
+                { "text": "-interpreter-exec console \"monitor sleep 200\""},
+                { "text": "-interpreter-exec console \"monitor psoc6 reset_halt sysresetreq\""},
+                { "text": "-enable-pretty-printing" }
+            ],
+            "logging": {
+                "moduleLoad": true,
+                "traceResponse": false,  // Way too much output
+                "trace": true,
+                "engineLogging": true,
+                "programOutput": true,
+                "exceptions": true
+            },
+            "linux": {
+                "MIMode": "gdb",
+                "MIDebuggerPath": "arm-none-eabi-gdb",
+                "debugServerPath": "pyocd-gdbserver"
+            },
+            "osx": {
+                "MIMode": "gdb",
+                "MIDebuggerPath": "arm-none-eabi-gdb",
+                "debugServerPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
+            },
+            "windows": {
+                //"preLaunchTask": "make.exe",
+                "MIMode": "gdb",
+                //"MIDebuggerPath": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\4.9 2015q3\\bin\\arm-none-eabi-gdb.exe",
+                "MIDebuggerPath": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\6 2017-q2-update\\bin\\arm-none-eabi-gdb.exe",
+                "debugServerPath": "pyocd-gdbserver.exe",
+            }
+        },
+        {
+            "name": "(gdb) Jlink",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_final.elf",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "logging" : {
+                "trace": true,
+                //"traceResponse": true,
+                "engineLogging": true,
+                "programOutput": true,
+                "moduleLoad": true,
+                "exceptions": true
+            },
+            /* My Stuff Begin */
+            "debugServerArgs": "-if swd -port 50000 -swoport 50001 -telnetport 50002 -device CY8C6xx7_CM4_sect256KB -s",
+            "serverLaunchTimeout": 10000,
+            "filterStderr": false,
+            "filterStdout": true,
+            "serverStarted": "Connected to target",
+            //"preLaunchTask": "Build",
+            "miDebuggerPath": "arm-none-eabi-gdb",
+            "debugServerPath": "/Applications/SEGGER/JLink/JLinkGDBServerCLExe",
+            "MIMode": "gdb",
+            "windows": {
+                //"miDebuggerArgs": "${workspaceFolder}/main_final.elf",
+                "miDebuggerPath": "C:/Users/hdm/ModusToolbox_1.0/tools/gcc-7.2.1-1.0/bin/arm-none-eabi-gdb.exe",
+                "debugServerPath": "C:/Program Files (x86)/SEGGER/JLink_V642c/JLinkGDBServerCL.exe",
+            },
+            "setupCommands": [
+                { "text": "-environment-cd ${workspaceRoot}" },
+                { "text": "-gdb-set target-async on" },
+                //{ "text": "source c:/Users/hdm/.vscode/extensions/marus25.cortex-debug-0.2.3/support/gdbsupport.init"}
+                { "text": "-interpreter-exec console \"set mem inaccessible-by-default off\"" },
+                { "text": "-target-select remote localhost:50000" },
+                { "text": "-file-exec-and-symbols main_final.elf" },
+                { "text": "-interpreter-exec console \"monitor halt\"" },
+                { "text": "-interpreter-exec console \"monitor reset\"" },
+                { "text": "monitor device = CY8C6xx7_CM4_sect256KB" },
+                { "text": "load '${workspaceFolder}/main_final.elf'" },
+                { "text": "-target-download" },
+                { "text": "-interpreter-exec console \"monitor reset\"" },
+                { "text": "-enable-pretty-printing" }
+            ],
+        },
+        {
+            "name": "Cortex-Debug (JLink)",
+            "cwd": "${workspaceRoot}",
+            "executable": "main_final.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "jlink",
+            "interface": "swd",
+            "runToMain": true,
+            "device": "CY8C6xx7_CM4_sect256KB",
+            "internalConsoleOptions":"openOnSessionStart",
+            //"internalConsoleOptions": "openOnFirstSessionStart",
+            //"svdFile": "/Applications/ModusToolbox_1.0/libraries/udd-1.0/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            "svdFile": "./psoc6_01.svd",
+            //"preLaunchTask": "Build",
+            "showDevDebugOutput": true,
+            "preLaunchCommands": [
+                "set mem inaccessible-by-default off"
+            ],
+            "preRestartCommands": [
+                "monitor reset 0"
+            ]
+        },
+        {
+            "name": "Cortex-Debug (OpenOCD)",
+            "cwd": "${workspaceFolder}",
+            "executable": "main_final.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            //"debugServer": 4711,
+            "configFiles": [ "${workspaceFolder}/openocd.tcl" ],
+            "searchDir": [ 
+                "${workspaceRoot}",
+                "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/"
+            ],
+            "internalConsoleOptions":"openOnSessionStart",
+            //"internalConsoleOptions": "openOnFirstSessionStart",
+            "runToMain": true,
+            //"svdFile": "/Applications/ModusToolbox_1.0/libraries/udd-1.0/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            "svdFile": "./psoc6_01.svd",
+            //"preLaunchTask": "Build",
+            "showDevDebugOutput": false,
+            "preLaunchCommands": [
+                "set mem inaccessible-by-default off",
+            ],
+            "postLaunchCommands": [
+                /*
+                // Following three commands are needed because Cortex-Debug is hardcoded to do a 'monitor reset halt'
+                // Creates a problem for multi core systems. Generally you will only need the sysresetreq
+                */
+                "monitor reset run",
+                "monitor sleep 200",
+                "monitor psoc6 reset_halt sysresetreq"
+            ],
+            "postRestartCommands": [
+                /*
+                // Following three commands are needed because Cortex-Debug is hardcoded to do a 'monitor reset halt'
+                // Creates a problem for multi core systems. Generally you will only need the sysresetreq
+                */
+                "monitor reset run",
+                "monitor sleep 200",
+                "monitor psoc6 reset_halt sysresetreq",
+                /*
+                // Following two commands are needed to get gdb and openocd and HW all in sync.
+                // Or, execution context (PC, stack, registers, etc.) look like they are from before reset.
+                // The stepi, is a pretend instruction that does not actually do a stepi, but MUST be done
+                // Its a documented workaround in openocd. Do a 'monitor help' to see more info
+                */
+                "monitor gdb_sync",
+                "stepi"
+            ],
+        },
+        {
+            "cwd": "${workspaceRoot}",
+            "executable": "main_final.elf",
+            "name": "Cortex-Debug Attach OpenOCD",
+            "request": "attach",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "svdFile": "./psoc6_01.svd",
+            "showDevDebugOutput": true,
+            "configFiles": [ "${workspaceFolder}/openocd.tcl" ],
+            "searchDir": [ 
+                "${workspaceRoot}",
+                "C:/Users/hdm/ModusToolbox_1.0/tools/openocd-1.0/scripts/",
+                "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/"
+            ],
+            "preAttachCommands": [
+                "set mem inaccessible-by-default off"
+            ],
+            "postAttachCommands": [
+                "-break-insert -t --function main",
+                "monitor reset 0",
+                "-exec-run"
+            ],
+            "preRestartCommands": [
+                "monitor reset 0"
+            ]
+        },
+        {
+            "cwd": "${workspaceRoot}",
+            "executable": "main_final.elf",
+            "name": "Debug Microcontroller",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "pyocd",
+            "showDevDebugOutput": true,
+        },
+    ]
+}
