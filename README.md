@@ -13,3 +13,4 @@ See: <https://github.com/Marus/cortex-debug/pull/151>
 
 ## Other stuff
 Directory 'demo' contains a small application for PSoC6. Interesting bits are in demo/.vscode directory. You will have to modify path names in launch.json, setting.json, etc.
+
