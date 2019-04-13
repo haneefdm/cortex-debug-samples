@@ -7,13 +7,17 @@ File cortex-debug-0.2.4.vsix is my latest cortex-debug extension that contains c
 See: <https://github.com/Marus/cortex-debug/pull/151>
 
 ## Install from vsix
+
 * Download the vsix file
 * Select the Extension Viewlet on left edge of VSCode where you see all the extensions
 * On top right, click on the '...' and select "Install from VSIX" and select the file just downloaded
 * Or, from the command line, you can do
-```
+
+```bash
     code --install-extension filename.vsix
 ```
+
 ## Other stuff
+
 Directory 'demo' contains a small application for PSoC6. Interesting bits are in demo/.vscode directory. You will have to modify path names in launch.json, setting.json, etc.
 
