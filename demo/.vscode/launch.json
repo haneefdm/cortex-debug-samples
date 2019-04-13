@@ -68,7 +68,7 @@
             "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
             
             // Only for Cortex-Debug extension developers
-            "debugServer": 4711,
+            //"debugServer": 4711,
         },
         {
             "name": "gdb (PyOCD)",
