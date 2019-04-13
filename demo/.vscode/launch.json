@@ -5,8 +5,6 @@
     "version":"0.2.0",
     "configurations": [
         {
-            // Things would be a bit simpler if we had an env-var for MTB install dir. Users can do it
-            // themselves. Ideas welcome
             "cwd": "${workspaceRoot}",
             "executable": "main_final.elf",
             "name": "PSoC6 CM4 (OpenOCD)",
@@ -21,6 +19,8 @@
             "configFiles": [
                 //"interface/kitprog3.cfg",
                 //"target/psoc6.cfg"
+                // Above two lines should have done the trick. But issues
+                // prevail with tcp ports and multiple cores
                 "openocd.tcl"
             ],
             "preLaunchCommands": [
@@ -57,13 +57,11 @@
                 "serverpath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
             },
             "windows": {
-                "toolchainPath": "{env:USERPROFILE}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
-                "serverpath": "{env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
+                "toolchainPath": "C:/Users/hdm/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "C:/Users/hdm/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
                 "svdFile": "${env:USERPROFILE}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             },
-            "linux": {
-                // Similar to osx I hope. Dont have a VM or computer to test
-            },
+
             // Optional entries
             // svdFiles can be very large.
             "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
