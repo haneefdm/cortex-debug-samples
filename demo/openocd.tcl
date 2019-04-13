@@ -6,7 +6,7 @@ source [find target/psoc6.cfg];
 puts stderr {Started by VSCode};
 
 # HDM: Following code is needed if you want to run 'init'. You cannot change the
-# gdb_port after init. Aso, since init is called automatically by OpenOCD, we do not
+# gdb_port after init. Since init is called automatically by OpenOCD, we do not
 # need to run it here. THIS CODE SHOULD NOT EXIST
 if {0} {
     # Hardcode gdb_port to 50000 to override the default 3333. We will not get
