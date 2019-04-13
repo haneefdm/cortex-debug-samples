@@ -1,6 +1,3 @@
-*.exe
-*.out
-*.app
 .DS_Store
 .cortex-debug.peripherals.state.json
 .cortex-debug.registers.state.json

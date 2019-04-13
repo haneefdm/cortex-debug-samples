@@ -6,12 +6,10 @@
         "editor.insertSpaces": false
     },
     "workbench.colorTheme": "Default Light+",
-    //"cortex-debug.armToolchainPath": "/Applications/ModusToolbox_1.1/tools/gcc-7.2.1-1.0/bin/",
-    //"cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V640/JLinkGDBServerCLExe",
-    //"cortex-debug.openocdPath": "/Applications/ModusToolbox_1.0/tools/openocd-1.0/bin/openocd",
-    "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
 
+    "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
+    
     // path where objdump and gdb can be found
-    "cortex-debug.armToolchainPath": "/Applications/ModusToolbox_1.0/tools/gcc-7.2.1-1.0/bin/",
-    "cortex-debug.openocdPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
+    //"cortex-debug.armToolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin/",
+    //"cortex-debug.openocdPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
 }

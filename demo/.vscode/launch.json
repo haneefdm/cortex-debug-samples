@@ -13,7 +13,8 @@
             "servertype": "openocd",
             "searchDir": [ 
                 "${workspaceRoot}",
-                "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/"
+                "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
+                "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/scripts/"
             ],
             "configFiles": [
                 //"interface/kitprog3.cfg",
@@ -47,12 +48,27 @@
                 "stepi"
             ],
 
+            // OS/user specific paths. They are better set using environment variables. settings.json
+            // is another place you can set them. Spaces, special chars in path names can cause issues
+            "osx": {
+                "toolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+            },
+            "windows": {
+                "toolchainPath": "C:/Users/hdm/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "C:/Users/hdm/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
+                "svdFile": "${env:USERPROFILE}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            },
+
             // Optional entries
             // svdFiles can be very large.
             "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             "runToMain": false,         // if true, program will halt at main. Only for fresh starts, not a restart
             "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
             "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
+            
+            // Only for Cortex-Debug extension developers
+            "debugServer": 4711,
         },
         {
             "name": "gdb (PyOCD)",
@@ -240,7 +256,7 @@
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "openocd",
-            //"debugServer": 4711,
+            "debugServer": 4711,
             "configFiles": [ "${workspaceFolder}/openocd.tcl" ],
             "searchDir": [ 
                 "${workspaceRoot}",
