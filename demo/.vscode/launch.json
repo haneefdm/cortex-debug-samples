@@ -57,8 +57,8 @@
                 "serverpath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
             },
             "windows": {
-                "toolchainPath": "C:/Users/hdm/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
-                "serverpath": "C:/Users/hdm/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
+                "toolchainPath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
                 "svdFile": "${env:USERPROFILE}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             },
 
