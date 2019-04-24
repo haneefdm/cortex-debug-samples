@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+executable.name=${cy_sdk_install_dir}/tools/openocd-2.2/bin/openocd
+install.folder=${cy_sdk_install_dir}/tools/openocd-2.2

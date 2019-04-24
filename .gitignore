@@ -1,5 +1,9 @@
 .DS_Store
 .cortex-debug.peripherals.state.json
 .cortex-debug.registers.state.json
+*.d
+*.o
 *~
 ipch
+Debug/
+Release/
