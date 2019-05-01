@@ -215,8 +215,8 @@
             //"preLaunchTask": "make",
             "serverStarted": "Info :.*Listening on port [0-9]+ for gdb connections",
             "setupCommands": [
+                //{ "text": "-gdb-set target-async on" },   // Already done by the vscode-cpptools
                 { "text": "-environment-cd ${workspaceRoot}" },
-                { "text": "-gdb-set target-async on" },
                 { "text": "-target-select extended-remote localhost:3333", "description": "connect to target", "ignoreFailures": false },
                 { "text": "-file-exec-and-symbols main_final.elf", "description": "load file", "ignoreFailures": false},
                 { "text": "-interpreter-exec console \"monitor reset init\""},
