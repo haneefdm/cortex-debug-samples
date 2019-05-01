@@ -208,7 +208,7 @@
             "cwd": "${workspaceRoot}",
             "environment": [],
             "externalConsole": false,
-            "debugServerArgs": "-s ${workspaceRoot} -s /Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts -s /home/hdm/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl",
+            "debugServerArgs": "-s ${workspaceRoot} -s /Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts -s ${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl",
             "serverLaunchTimeout": 20000,
             "filterStderr": false,
             "filterStdout": false,
@@ -236,8 +236,8 @@
             },
             "linux": {
                 "MIMode": "gdb",
-                "MIDebuggerPath": "/home/hdm/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin/arm-none-eabi-gdb",
-                "debugServerPath": "/home/hdm/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
+                "MIDebuggerPath": "${env:HOME}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin/arm-none-eabi-gdb",
+                "debugServerPath": "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
             },
             "osx": {
                 "MIMode": "gdb",
