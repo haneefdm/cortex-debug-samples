@@ -208,11 +208,6 @@
             "cwd": "${workspaceRoot}",
             "environment": [],
             "externalConsole": false,
-<<<<<<< HEAD
-            "debugServerArgs": "-s ${workspaceRoot} -s /Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts -s C:/Users/hdm/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl",
-=======
-            "debugServerArgs": "-s ${workspaceRoot} -s /Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts -s ${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl",
->>>>>>> 5a542d542945ca51642585c5629efbf53812e600
             "serverLaunchTimeout": 20000,
             "filterStderr": false,
             "filterStdout": false,
@@ -240,24 +235,21 @@
             },
             "linux": {
                 "MIMode": "gdb",
-<<<<<<< HEAD
-                "MIDebuggerPath": "arm-none-eabi-gdb",
-                "debugServerPath": "~/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
-=======
                 "MIDebuggerPath": "${env:HOME}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin/arm-none-eabi-gdb",
-                "debugServerPath": "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
->>>>>>> 5a542d542945ca51642585c5629efbf53812e600
+                "debugServerPath": "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+                "debugServerArgs": "-s ${workspaceRoot} -s ${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl"
             },
             "osx": {
                 "MIMode": "gdb",
                 "MIDebuggerPath": "arm-none-eabi-gdb",
-                "debugServerPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
+                "debugServerPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+                "debugServerArgs": "-s ${workspaceRoot} -s /Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl"
             },
             "windows": {
                 "MIMode": "gdb",
-                //"MIDebuggerPath": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\6 2017-q2-update\\bin\\arm-none-eabi-gdb.exe",
                 "MIDebuggerPath": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\6 2017-q2-update\\bin\\arm-none-eabi-gdb.exe",
                 "debugServerPath": "C:/Users/hdm/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
+                "debugServerArgs": "-s ${workspaceRoot} -s ${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl"
             }
         },
         {
