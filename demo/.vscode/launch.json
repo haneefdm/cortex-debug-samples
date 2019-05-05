@@ -15,6 +15,7 @@
                 "${workspaceRoot}",
                 "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
                 "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
+                "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
             ],
             "configFiles": [
                 // Above two lines should have done the trick. But issues
@@ -54,6 +55,11 @@
                 "toolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
                 "serverpath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
             },
+            "linux": {
+                "toolchainPath": "${env:HOME}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+                "svdFile": "${env:HOME}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            },
             "windows": {
                 "toolchainPath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
                 "serverpath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
@@ -65,10 +71,10 @@
             "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             "runToMain": false,         // if true, program will halt at main. Only for fresh starts, not a restart
             "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
-            "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
+            "showDevDebugOutput": true, // Shows output of GDB, helpful when something is not working right
             
             // Only for Cortex-Debug extension developers
-            "debugServer": 4711,
+            //"debugServer": 4711,
         },
 
         // EVERYTHING BELOW THIS POINT IS EXPERIMENTAL
@@ -202,15 +208,19 @@
             "cwd": "${workspaceRoot}",
             "environment": [],
             "externalConsole": false,
+<<<<<<< HEAD
             "debugServerArgs": "-s ${workspaceRoot} -s /Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts -s C:/Users/hdm/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl",
+=======
+            "debugServerArgs": "-s ${workspaceRoot} -s /Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts -s ${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl",
+>>>>>>> 5a542d542945ca51642585c5629efbf53812e600
             "serverLaunchTimeout": 20000,
             "filterStderr": false,
             "filterStdout": false,
             //"preLaunchTask": "make",
             "serverStarted": "Info :.*Listening on port [0-9]+ for gdb connections",
             "setupCommands": [
+                //{ "text": "-gdb-set target-async on" },   // Already done by the vscode-cpptools
                 { "text": "-environment-cd ${workspaceRoot}" },
-                { "text": "-gdb-set target-async on" },
                 { "text": "-target-select extended-remote localhost:3333", "description": "connect to target", "ignoreFailures": false },
                 { "text": "-file-exec-and-symbols main_final.elf", "description": "load file", "ignoreFailures": false},
                 { "text": "-interpreter-exec console \"monitor reset init\""},
@@ -230,8 +240,13 @@
             },
             "linux": {
                 "MIMode": "gdb",
+<<<<<<< HEAD
                 "MIDebuggerPath": "arm-none-eabi-gdb",
                 "debugServerPath": "~/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
+=======
+                "MIDebuggerPath": "${env:HOME}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin/arm-none-eabi-gdb",
+                "debugServerPath": "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
+>>>>>>> 5a542d542945ca51642585c5629efbf53812e600
             },
             "osx": {
                 "MIMode": "gdb",
