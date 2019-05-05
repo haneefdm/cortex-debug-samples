@@ -202,7 +202,7 @@
             "cwd": "${workspaceRoot}",
             "environment": [],
             "externalConsole": false,
-            "debugServerArgs": "-s ${workspaceRoot} -s /Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl",
+            "debugServerArgs": "-s ${workspaceRoot} -s /Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts -s C:/Users/hdm/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl",
             "serverLaunchTimeout": 20000,
             "filterStderr": false,
             "filterStdout": false,
@@ -231,7 +231,7 @@
             "linux": {
                 "MIMode": "gdb",
                 "MIDebuggerPath": "arm-none-eabi-gdb",
-                "debugServerPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
+                "debugServerPath": "~/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
             },
             "osx": {
                 "MIMode": "gdb",
@@ -239,11 +239,10 @@
                 "debugServerPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd"
             },
             "windows": {
-                //"preLaunchTask": "make.exe",
                 "MIMode": "gdb",
-                //"MIDebuggerPath": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\4.9 2015q3\\bin\\arm-none-eabi-gdb.exe",
+                //"MIDebuggerPath": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\6 2017-q2-update\\bin\\arm-none-eabi-gdb.exe",
                 "MIDebuggerPath": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\6 2017-q2-update\\bin\\arm-none-eabi-gdb.exe",
-                "debugServerPath": "pyocd-gdbserver.exe",
+                "debugServerPath": "C:/Users/hdm/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
             }
         },
         {
@@ -380,7 +379,7 @@
             "configFiles": [ "${workspaceFolder}/openocd.tcl" ],
             "searchDir": [ 
                 "${workspaceRoot}",
-                "C:/Users/hdm/ModusToolbox_1.0/tools/openocd-1.0/scripts/",
+                "C:/Users/hdm/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
                 "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/"
             ],
             "preAttachCommands": [
