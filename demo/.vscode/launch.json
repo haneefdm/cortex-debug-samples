@@ -401,14 +401,5 @@
                 "monitor reset 0"
             ]
         },
-        {
-            "cwd": "${workspaceRoot}",
-            "executable": "main_final.elf",
-            "name": "Debug Microcontroller",
-            "request": "launch",
-            "type": "cortex-debug",
-            "servertype": "pyocd",
-            "showDevDebugOutput": true,
-        },
     ]
 }
