@@ -65,9 +65,9 @@
             // Optional entries
             // svdFiles can be very large.
             "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
-            "runToMain": false,         // if true, program will halt at main. Only for fresh starts, not a restart
+            "runToMain": true,          // if true, program will halt at main. Only for fresh starts, not a restart
             "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
-            "showDevDebugOutput": false, // Shows output of GDB, helpful when something is not working right
+            "showDevDebugOutput": true, // Shows output of GDB, helpful when something is not working right
             
             // Only for Cortex-Debug extension developers
             "debugServer": 4711,
@@ -91,7 +91,8 @@
                 //"target/psoc6.cfg"
                 // Above two lines should have done the trick. But issues
                 // prevail with tcp ports and multiple cores
-                "openocd.tcl"
+                "openocd.tcl",
+                "tmp.tcl"
             ],
             "preAttachCommands": [
                 "set mem inaccessible-by-default off",
@@ -138,7 +139,7 @@
             "showDevDebugOutput": true,// Shows output of GDB, helpful when something is not working right
             
             // Only for Cortex-Debug extension developers
-            //"debugServer": 4711,
+            "debugServer": 4711,
         },        
         {
             "name": "gdb (PyOCD)",
@@ -221,7 +222,7 @@
                 { "text": "-interpreter-exec console \"monitor psoc6 reset_halt sysresetreq\""},
                 { "text": "-enable-pretty-printing" }
             ],
-            "logging": {
+            "loggingx": {
                 "moduleLoad": true,
                 "traceResponse": false,  // Way too much output
                 "trace": true,
@@ -299,7 +300,7 @@
         {
             "name": "Cortex-Debug (JLink)",
             "cwd": "${workspaceRoot}",
-            "executable": "main_final.elf",
+            "executable": "BlinkyLED_mainapp/Debug/BlinkyLED_mainapp_final.elf",
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "jlink",

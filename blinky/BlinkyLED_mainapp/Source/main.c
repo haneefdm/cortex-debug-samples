@@ -52,11 +52,18 @@
 
 #include "cy_pdl.h"
 #include "cycfg.h"
+#include "./blah.h"
 
 int main(void)
 {
+	trigger_set_t blah = {
+			false, 0, 1, 7, 9, 1.3, 10000, 5000
+	};
+	myFunc(&blah);
+
     /* Set up internal routing, pins, and clock-to-peripheral connections */
     init_cycfg_all();
+
     
     /* enable interrupts */
     __enable_irq();

@@ -20,7 +20,8 @@
             "configFiles": [
                 // Above two lines should have done the trick. But issues
                 // prevail with tcp ports and multiple cores
-                "openocd.tcl"
+                "openocd.tcl",
+                //"tmp.tcl"
             ],
             "preLaunchCommands": [
                 "set mem inaccessible-by-default off",
@@ -68,13 +69,14 @@
 
             // Optional entries
             // svdFiles can be very large.
-            "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            // "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            "svdFile": "xmc4700.svd",
             "runToMain": false,         // if true, program will halt at main. Only for fresh starts, not a restart
             "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
-            "showDevDebugOutput": true, // Shows output of GDB, helpful when something is not working right
+            "showDevDebugOutput": false, // Shows output of GDB, helpful when something is not working right
             
             // Only for Cortex-Debug extension developers
-            //"debugServer": 4711,
+            "debugServer": 4711,
         },
 
         // EVERYTHING BELOW THIS POINT IS EXPERIMENTAL
@@ -95,7 +97,8 @@
                 //"target/psoc6.cfg"
                 // Above two lines should have done the trick. But issues
                 // prevail with tcp ports and multiple cores
-                "openocd.tcl"
+                "openocd.tcl",
+                //"tmp.tcl"
             ],
             "preAttachCommands": [
                 "set mem inaccessible-by-default off",
@@ -139,7 +142,7 @@
             // Optional entries
             // svdFiles can be very large.
             "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
-            "showDevDebugOutput": true,// Shows output of GDB, helpful when something is not working right
+            "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
             
             // Only for Cortex-Debug extension developers
             //"debugServer": 4711,
@@ -203,7 +206,7 @@
             "request": "launch",
             "program": "${workspaceRoot}/main_final.elf",
             "args": [],
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
             "environment": [],
             "externalConsole": false,

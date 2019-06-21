@@ -2,7 +2,7 @@
 
 
 1. Make sure you have the latest OpenOCD from MTB 2.0 build. Or download from here <https://drive.google.com/open?id=1fxMy1w-5lRPW1otD7BurX3ukoxdtVCB_>
-2. in `settings.json` copy the following lines. You can put this in your projects .vscode directory or in your global settings
+2. in `settings.json` copy the following lines. You can put this in your workspace .vscode directory or in your global settings. Global settings is preferable.
 ```json
     "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
     // path where objdump and gdb can be found
@@ -39,9 +39,9 @@
             ],
             "postRestartCommands": [
                 /*
-                // Following three commands are needed because Cortex-Debug is hardcoded to do a 'monitor reset halt'
-                // Creates a problem for multi core systems like PSoC6, so this is a workaround. Normally, only a
-                // sysresetreq is needed for PSoc6
+                // Following three commands are needed because Cortex-Debug is hardcoded to do a
+                // `monitor reset halt`. Creates a problem for multi core systems like
+                // PSoC6, so this is a workaround. Normally, only a sysresetreq is needed for PSoc6
                 */
                 "monitor reset run",
                 "monitor sleep 200",
@@ -57,7 +57,9 @@
             ],
 
 
-            // svdFiles are optional can be very large. You can also set 
+            // svdFiles are optional can be very large.
+            // You can also set 'toolchainPath' and 'serverpath`
+            // in an OS specific way here.
             "osx": {
                 "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             },
