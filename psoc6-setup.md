@@ -6,12 +6,11 @@
 3. in `settings.json` copy the following lines. You can put this in your workspace .vscode directory or in your global settings. Global settings is preferable since they are user and OS specific
 
     ```javascript
-    "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
     // path where objdump and gdb can be found
     "cortex-debug.armToolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin/",
     // gdb-server-paths
-    "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
     "cortex-debug.openocdPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+    "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
     ```
 
 4. In `.vscode/launch.json`, have the following configuration. Make sure you edit the `executable` entry below and all path names make are valid for your environment.
