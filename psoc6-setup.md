@@ -56,8 +56,6 @@
             "monitor gdb_sync",
             "stepi"
         ],
-
-
         // svdFiles are optional can be very large. You can also set 'toolchainPath' and 'serverpath`
         // in an OS specific way here.
         "osx": {
@@ -69,7 +67,6 @@
         "linux": {
             "svdFile": "${env:HOME}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
         },
-
         "runToMain": true,          // if true, program will halt at main. Not used for a restart
         "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
         "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
