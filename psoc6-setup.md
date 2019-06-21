@@ -1,18 +1,22 @@
 # PSoC6 setup instructions for Cortex-Debug
 
 
-1. Make sure you have the latest OpenOCD from MTB 2.0 build. Or download from here <https://drive.google.com/open?id=1fxMy1w-5lRPW1otD7BurX3ukoxdtVCB_>
-2. in `settings.json` copy the following lines. You can put this in your workspace .vscode directory or in your global settings. Global settings is preferable since they are user and OS specific
-```javascript
+1. Install Cortex-Debug 0.3.1 or higher
+2. Make sure you have the latest OpenOCD from MTB 2.0 build. Or download from here <https://drive.google.com/open?id=1fxMy1w-5lRPW1otD7BurX3ukoxdtVCB_>
+3. in `settings.json` copy the following lines. You can put this in your workspace .vscode directory or in your global settings. Global settings is preferable since they are user and OS specific
+
+    ```javascript
     "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
     // path where objdump and gdb can be found
     "cortex-debug.armToolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin/",
     // gdb-server-paths
     "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
     "cortex-debug.openocdPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
-```
-3. In `.vscode/launch.json`, have the following configuration. Make sure you edit the `executable` entry below and all path names make are valid for your environment.
-```javascript
+    ```
+
+4. In `.vscode/launch.json`, have the following configuration. Make sure you edit the `executable` entry below and all path names make are valid for your environment.
+
+    ```javascript
     {
         "name": "Launch PSoC6 CM4 (OpenOCD)",
         "type": "cortex-debug",
@@ -71,10 +75,14 @@
         "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
         "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
     },
-```
-4. In your workspace directory, create a file called `openocd.tcl` with the following contents
-```tcl
+    ```
+
+5. In your workspace directory, create a file called `openocd.tcl` with the following contents
+
+    ```tcl
     set ENABLE_CM0 0
     source [find interface/kitprog3.cfg];
     source [find target/psoc6.cfg];
-```
+    ```
+
+6. Besides the 'Debug Console', look in the Output tab next to it (select the 'Adapter Output` from the dropdown) to see the output from the gdb-server. If the OpenOCD server does not start properly, you will see some messages here.
