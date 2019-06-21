@@ -67,10 +67,10 @@
             "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             "runToMain": true,          // if true, program will halt at main. Only for fresh starts, not a restart
             "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
-            "showDevDebugOutput": true, // Shows output of GDB, helpful when something is not working right
+            "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
             
             // Only for Cortex-Debug extension developers
-            "debugServer": 4711,
+            // "debugServer": 4711,
         },
 
         // EVERYTHING BELOW THIS POINT IS EXPERIMENTAL
