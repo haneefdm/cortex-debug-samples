@@ -12,7 +12,7 @@
     "cortex-debug.openocdPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
 ```
 3. In launch.json, have the following configuration. Make sure you edit the `executable` entry below and all path names make are valid for your environment.
-```json
+```javascript
     {
         "name": "Launch PSoC6 CM4 (OpenOCD)",
         "type": "cortex-debug",
