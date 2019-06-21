@@ -3,7 +3,7 @@
 
 1. Install Cortex-Debug 0.3.1 or higher
 2. Make sure you have the latest OpenOCD from MTB 2.0 build. Or download from here <https://drive.google.com/open?id=1fxMy1w-5lRPW1otD7BurX3ukoxdtVCB_>
-3. in `settings.json` copy the following lines. You can put this in your workspace .vscode directory or in your global settings. Global settings is preferable since they are user and OS specific
+3. in `settings.json` copy the following lines. You can put this in your workspace `.vscode` directory or in your global settings. Global settings is preferable since they are user and OS specific
 
     ```javascript
     // path where objdump and gdb can be found
@@ -13,7 +13,7 @@
     "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
     ```
 
-4. In `.vscode/launch.json`, have the following configuration. Make sure you edit the `executable` entry below and all path names make are valid for your environment.
+4. In `.vscode/launch.json`, have the following configuration. Make sure you edit the `executable` entry below and all path names are valid for your environment.
 
     ```javascript
     {
