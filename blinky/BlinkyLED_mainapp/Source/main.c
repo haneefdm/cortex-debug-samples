@@ -71,6 +71,7 @@ int main(void)
     for (;;)
     {
         Cy_GPIO_Inv(LED_RED_PORT, LED_RED_PIN); /* toggle the pin */
+        Cy_GPIO_Inv(GPIO_PRT1, LED_RED_PIN-1); /* toggle the pin */
         Cy_SysLib_Delay(1000/*msec*/);
     }
 }
