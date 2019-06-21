@@ -1,9 +1,9 @@
 # PSoC6 setup instructions for Cortex-Debug
 
-
-1. Install Cortex-Debug 0.3.1 or higher
-2. Make sure you have the latest OpenOCD from MTB 2.0 build. Or download [from here](https://drive.google.com/open?id=1fxMy1w-5lRPW1otD7BurX3ukoxdtVCB_)
-3. in `settings.json` copy the following lines. You can put this in your workspace `.vscode` directory or in your global settings. Global settings is preferable since they are user and OS specific
+1. Make sure your board is updated with latest firmware and set to the appropriate mode for OpenOCD. MTB 2.0 has latest. MTB 1.1 may have it as well
+2. Install Cortex-Debug 0.3.1 or higher
+3. Make sure you have the latest OpenOCD from MTB 2.0 build. Or download [from here](https://drive.google.com/open?id=1fxMy1w-5lRPW1otD7BurX3ukoxdtVCB_)
+4. in `settings.json` copy the following lines. You can put this in your workspace `.vscode` directory or in your global settings. Global settings is preferable since they are user and OS specific
 
     ```javascript
     // path where objdump and gdb can be found
@@ -13,7 +13,7 @@
     "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
     ```
 
-4. In `.vscode/launch.json`, have the following configuration. Make sure you edit the `executable` entry below and all path names are valid for your environment.
+5. In `.vscode/launch.json`, have the following configuration. Make sure you edit the `executable` entry below and all path names are valid for your environment.
 
     ```javascript
     {
@@ -73,7 +73,7 @@
     },
     ```
 
-5. In your workspace directory, create a file called `openocd.tcl` with the following contents
+6. In your workspace directory, create a file called `openocd.tcl` with the following contents
 
     ```tcl
     set ENABLE_CM0 0
@@ -81,4 +81,4 @@
     source [find target/psoc6.cfg];
     ```
 
-6. Besides the 'Debug Console', look in the Output tab next to it (select the 'Adapter Output` from the dropdown) to see the output from the gdb-server. If the OpenOCD server does not start properly, you will see some messages here.
+7. Besides the 'Debug Console', look in the Output tab next to it (select the 'Adapter Output` from the dropdown) to see the output from the gdb-server. If the OpenOCD server does not start properly, you will see some messages here.
