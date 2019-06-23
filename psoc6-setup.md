@@ -79,6 +79,8 @@
     set ENABLE_CM0 0
     source [find interface/kitprog3.cfg];
     source [find target/psoc6.cfg];
+    #uncomment for RTOS support. Also see http://openocd.org/doc/html/GDB-and-OpenOCD.html
+    #${TARGET}.cm4 configure -rtos auto
     ```
 
 7. Besides the 'Debug Console', look in the Output tab next to it (select the 'Adapter Output` from the dropdown) to see the output from the gdb-server. If the OpenOCD server does not start properly, you will see some messages here.
