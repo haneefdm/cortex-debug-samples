@@ -79,7 +79,7 @@
     set ENABLE_CM0 0
     source [find interface/kitprog3.cfg];
     source [find target/psoc6.cfg];
-    #uncomment for RTOS support. Also see http://openocd.org/doc/html/GDB-and-OpenOCD.html
+    # uncomment below for RTOS support. See http://openocd.org/doc/html/GDB-and-OpenOCD.html
     #${TARGET}.cm4 configure -rtos auto
     ```
 
