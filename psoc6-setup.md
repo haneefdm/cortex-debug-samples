@@ -3,7 +3,7 @@
 1. Make sure your board is updated with latest firmware and set to the appropriate mode for OpenOCD. MTB 2.0 has latest. MTB 1.1 may have it as well
 2. Install Cortex-Debug 0.3.1 or higher
 3. Make sure you have the latest OpenOCD from MTB 2.0 build. Or download [from here](https://drive.google.com/open?id=1fxMy1w-5lRPW1otD7BurX3ukoxdtVCB_)
-4. in `settings.json` copy the following lines. You can put this in your workspace `.vscode` directory or in your global settings. Global settings is preferable since they are user and OS specific
+4. in `settings.json` copy the following lines. You can put this in your workspace `.vscode` directory or in your [global settings](https://code.visualstudio.com/docs/getstarted/settings#_settings-file-locations). Global settings is preferable since they are user and OS specific
 
     ```javascript
     // path where objdump and gdb can be found
