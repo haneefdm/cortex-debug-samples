@@ -82,3 +82,5 @@
     ```
 
 7. Besides the 'Debug Console', look in the Output tab next to it (select the 'Adapter Output` from the dropdown) to see the output from the gdb-server. If the OpenOCD server does not start properly, you will see some messages here.
+
+![Example error](./images/openocd-error.jpg)
