@@ -28,6 +28,7 @@ int main(int argc, char **argv)
     // Set breakpoint at nxt line, expand argv in Variables window and keep hitting the
     // Step-Over button. All of a sudden, you will the Variables window go blank and then
     // back to its default state and 'argv' is collapsed
+    timeout = mySleep(timeout);         // <=== place breakpoint here
     timeout = mySleep(timeout);
     timeout = mySleep(timeout);
     timeout = mySleep(timeout);
@@ -39,10 +40,9 @@ int main(int argc, char **argv)
 
     // Place breakpoint below and make sure 'argv' is still expanded and cotinue.
     // Randomly pause debugger giving about a second between pauses. Tree loses state.
-    std::cout << helpText << std::endl;
+    std::cout << helpText << std::endl; // <=== place breakpoint here
     while (foo) {
         // Attempt a calculation without using any function calls
-        // do a pause in the debugger and hopefully
         for(i=2; i < (1 << 30); ++i)
         {
             // i is a prime number, flag will be equal to 1
