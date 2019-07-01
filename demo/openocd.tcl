@@ -1,6 +1,6 @@
 
 #debug_level 3
-set ENABLE_CM0 0
+#set ENABLE_CM0 0
 source [find interface/kitprog3.cfg];
 source [find target/psoc6.cfg];
 puts stderr {Started by VSCode};
@@ -33,6 +33,21 @@ if {0} {
         }
         gdb_port_orig
         return $our_preferred_gdb_port
+    }
+}
+
+foreach t [target names] {
+    puts "Haneef Target: $t"
+}
+
+#psoc6.cpu.cm0 configure -gdb-port 60000
+set junk_port 60000
+set my_cpu "psoc6.cpu.cm4";  # This is what I want to debug
+foreach t [target names] {
+    if {[string compare $t $my_cpu] != 0} {
+        $t configure -gdb-port $junk_port
+        puts "My Msg: CPU $t should now using gdb port $junk_port"
+        incr junk_port
     }
 }
 
