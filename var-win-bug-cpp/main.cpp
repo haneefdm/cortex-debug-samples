@@ -7,6 +7,21 @@
 #include <time.h>
 #include <string.h>
 
+#if defined(__CYGWIN__)
+#include <errno.h>
+int usleep(useconds_t useconds)
+{
+    struct timespec ts;
+
+    ts.tv_sec = (long int)useconds / 1000000;
+    ts.tv_nsec = ((long int)useconds % 1000000) * 1000;
+    if (!nanosleep(&ts,&ts)) return 0;
+    if (errno == EINTR) return ts.tv_sec;
+    return -1;
+}
+
+#endif
+
 const int incr = 100;   // ms
 
 int mySleep(int timeout) {
@@ -33,7 +48,7 @@ int main(int argc, char **argv)
     timeout = mySleep(timeout);
     timeout = mySleep(timeout);
     timeout = mySleep(timeout);
-    timeout = mySleep(timeout);
+    timeout = mySleep(timeout);         // Somewhere near hear, things go bad
     timeout = mySleep(timeout);
     timeout = mySleep(timeout);
     timeout = mySleep(timeout);
@@ -41,6 +56,9 @@ int main(int argc, char **argv)
     // Place breakpoint below and make sure 'argv' is still expanded and cotinue.
     // Randomly pause debugger giving about a second between pauses. Tree loses state.
     std::cout << helpText << std::endl; // <=== place breakpoint here
+    // Pausing debugger on cygwin may not work easily -- try one or more Control-Cs
+    // and, it won't stop in this function but rather in some other cygwin thread that
+    // handles signals.
     while (foo) {
         // Attempt a calculation without using any function calls
         for(i=2; i < (1 << 30); ++i)

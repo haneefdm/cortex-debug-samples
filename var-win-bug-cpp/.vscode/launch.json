@@ -20,6 +20,7 @@
             },
             "windows": {
                 "program": "${workspaceFolder}/main.exe",
+                "miDebuggerPath": "C:/cygwin64/bin/gdb.exe"
             },
             "preLaunchTask": "build"
         }
