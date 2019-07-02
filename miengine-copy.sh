@@ -5,6 +5,7 @@ declare -a srcdirs=(
     'V:/VSCode/MIEngine/bin/Desktop.Debug'
     'C:/Users/hdm/vscode/MIEngine/bin/Desktop.Debug'
     '/Volumes/hdm/vscode/MIEngine/bin/Desktop.Debug'
+    '/media/myxps0-j/VSCode/MIEngine/bin/Desktop.Debug'
 )
 
 src=
@@ -16,11 +17,13 @@ for d in "${srcdirs[@]}" ; do
     fi
     echo "Skipping source dir '$d' not found"
 done
-[[ "$src" == "" ]] && exit 1
+[[ "$src" == "" ]] && { echo "Error: No suitable source dir found." ; exit 1 ; }
 
-ext='mdb'
+dllExt='dll.mdb'
+exeExt='exe.mdb'
 if [[ ($OSTYPE == 'cygwin') || ($OSTYPE == 'win32') ]]; then
-    ext='pdb'
+    dllExt='pdb'
+    exeExt='pdb'
     export HOME="${USERPROFILE//\\//}"
 fi
 
@@ -48,10 +51,10 @@ declare -a files=(
     "vscode/OpenDebugAD7.exe"
     "vscode/Microsoft.DebugEngineHost.dll"
     "vscode/Microsoft.VisualStudio.Shared.VSCodeDebugProtocol.dll"
-    "Microsoft.MICore.${ext}"
-    "Microsoft.MIDebugEngine.${ext}"
-    "vscode/OpenDebugAD7.${ext}"
-    "vscode/Microsoft.DebugEngineHost.${ext}"
+    "Microsoft.MICore.${dllExt}"
+    "Microsoft.MIDebugEngine.${dllExt}"
+    "vscode/OpenDebugAD7.${exeExt}"
+    "vscode/Microsoft.DebugEngineHost.${dllExt}"
 )
 
 for f in "${files[@]}" ; do
