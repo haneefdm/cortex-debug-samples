@@ -48,7 +48,7 @@ int main(int argc, char **argv)
     timeout = mySleep(timeout);
     timeout = mySleep(timeout);
     timeout = mySleep(timeout);
-    timeout = mySleep(timeout);         // Somewhere near hear, things go bad
+    timeout = mySleep(timeout);         // Somewhere near here, things go bad
     timeout = mySleep(timeout);
     timeout = mySleep(timeout);
     timeout = mySleep(timeout);
