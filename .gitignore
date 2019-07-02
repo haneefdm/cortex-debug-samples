@@ -5,5 +5,5 @@
 *.o
 *~
 ipch
-Debug/
-Release/
+xDebug/
+xRelease/
