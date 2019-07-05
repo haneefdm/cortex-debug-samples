@@ -64,8 +64,8 @@
         "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
         "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
     },
-    // When using 'attach', make sure your program is running on the board and that your executable matches exactly.
-    // Or else strange things can happen
+    // When using 'attach', make sure your program is running on the board and that your executable matches
+    // the image in the chip exactly, or else strange things can happen with breakpoint, variables, etc.
     {
         "name": "Attach PSoC6 CM4 (OpenOCD)",
         "type": "cortex-debug",
