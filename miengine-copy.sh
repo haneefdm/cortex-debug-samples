@@ -32,6 +32,7 @@ exthome="$HOME/.vscode/extensions"
 extdir=`ls -1rt "$exthome" | grep ms-vscode.cpptools | tail -1`
 dst="$exthome/$extdir/debugAdapters/bin"
 dst2="${dst//.vscode/.vscode-oss-dev}"
+dst3="${dst//.vscode/.vscode-insiders}"
 if [[ ! -d "$dst" ]]; then
     echo "Destination directory '$dst' does not exist"
     exit 1
@@ -68,8 +69,13 @@ for f in "${files[@]}" ; do
 	cp -p "$src/$f" "$dst2"
 	[[ $? == 0 ]] || { echo "Failed!!!" ; exit 1 ; }
     fi
+    if [[ -d "$dst3" ]]; then
+	cp -p "$src/$f" "$dst3"
+	[[ $? == 0 ]] || { echo "Failed!!!" ; exit 1 ; }
+    fi
 done
 
 echo "Listing of '$dst'"
 ls -lrt "$dst"
 [[ -d "$dst2" ]] && echo "Listing of '$dst2'" && ls -lrt "$dst2"
+[[ -d "$dst3" ]] && echo "Listing of '$dst3'" && ls -lrt "$dst3"
