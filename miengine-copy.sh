@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 declare -a srcdirs=(
+    'C:/Users/hdm/vscode/MIEngine/bin/Desktop.Debug'
     'J:/VSCode/MIEngine/bin/Desktop.Debug'
     'V:/VSCode/MIEngine/bin/Desktop.Debug'
     '/Volumes/J/VSCode/MIEngine/bin/Desktop.Debug'
     '/media/myxps0-j/VSCode/MIEngine/bin/Desktop.Debug'
     '/Volumes/hdm/vscode/MIEngine/bin/Desktop.Debug'
-    'C:/Users/hdm/vscode/MIEngine/bin/Desktop.Debug'
 )
 
 src=
