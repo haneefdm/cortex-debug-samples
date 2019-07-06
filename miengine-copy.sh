@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-cppextdir='ms-vscode.cpptools-0.24.0-insiders3'
 declare -a srcdirs=(
     'J:/VSCode/MIEngine/bin/Desktop.Debug'
     'V:/VSCode/MIEngine/bin/Desktop.Debug'
@@ -24,8 +23,11 @@ if [[ ($OSTYPE == 'cygwin') || ($OSTYPE == 'win32') ]]; then
     export HOME="${USERPROFILE//\\//}"
 fi
 
-dst="$HOME/.vscode/extensions/$cppextdir/debugAdapters/bin"
-dst2="$HOME/.vscode-oss-dev/extensions/$cppextdir/debugAdapters/bin"
+# Find latest extension
+exthome="$HOME/.vscode/extensions"
+extdir=`ls -1rt "$exthome" | grep ms-vscode.cpptools | tail -1`
+dst="$exthome/$extdir/debugAdapters/bin"
+dst2="${dst//.vscode/.vscode-oss-dev}"
 if [[ ! -d "$dst" ]]; then
     echo "Destination directory '$dst' does not exist"
     exit 1
