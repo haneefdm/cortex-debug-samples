@@ -1,23 +1,30 @@
 #!/usr/bin/env bash
+REMOTE_DIR='V:/VSCode/MIEngine.dist/Desktop.Debug'
+LOCAL_DIR='C:/Users/hdm/vscode/MIEngine/bin/Desktop.Debug'
+
 declare -a srcdirs=(
-    'C:/Users/hdm/vscode/MIEngine/bin/Desktop.Debug'
-    'J:/VSCode/MIEngine/bin/Desktop.Debug'
-    'V:/VSCode/MIEngine/bin/Desktop.Debug'
-    '/Volumes/J/VSCode/MIEngine/bin/Desktop.Debug'
-    '/media/myxps0-j/VSCode/MIEngine/bin/Desktop.Debug'
-    '/Volumes/hdm/vscode/MIEngine/bin/Desktop.Debug'
+    "$LOCAL_DIR"
+    "$REMOTE_DIR"
+    "${REMOTE_DIR//V:/J:}"
+    '/Volumes/J/VSCode/MIEngine.dist/Desktop.Debug'
+    '/media/myxps0-j/VSCode/MIEngine.dist/Desktop.Debug'
 )
 
 src=
 for d in "${srcdirs[@]}" ; do
     if [[ -d "$d" ]]; then
-	src="$d"
-	echo "Using source dir '$src'"
-	break
+    	src="$d"
+    	echo "Using source dir '$src'"
+    	break
     fi
     echo "Skipping source dir '$d' not found"
 done
 [[ "$src" == "" ]] && { echo "Error: No suitable source dir found." ; exit 1 ; }
+
+if [[ "$src" == "$LOCAL_DIR" ]];then
+    rm -fr "$REMOTE_DIR"
+    cp -pr "$src"  "$REMOTE_DIR"
+fi
 
 dllExt='dll.mdb'
 exeExt='exe.mdb'
@@ -30,23 +37,15 @@ fi
 # Find latest extension
 exthome="$HOME/.vscode/extensions"
 extdir=`ls -1rt "$exthome" | grep ms-vscode.cpptools | tail -1`
-dst="$exthome/$extdir/debugAdapters/bin"
-dst2="${dst//.vscode/.vscode-oss-dev}"
-dst3="${dst//.vscode/.vscode-insiders}"
-if [[ ! -d "$dst" ]]; then
-    echo "Destination directory '$dst' does not exist"
-    exit 1
-else
-    echo "Destination dir '$dst'"
-fi
+dst1="$exthome/$extdir/debugAdapters/bin"
+dst2="${dst1//.vscode/.vscode-oss-dev}"
+dst3="${dst1//.vscode/.vscode-insiders}"
 
-if [[ ! -d "${dst}.bak" ]]; then
-    echo "Making a backup of '$dst'"
-    cp -r "$dst" "${dst}.bak"
-    [[ $? == 0 ]] || { echo Failed to create backup ; exit 1 ; }
-else
-    echo "Note: Backup '${dst}.bak' already exists..."
-fi
+declare -a dsts=(
+    "$dst1"
+    "$dst2"
+    "$dst3"
+)
 
 declare -a files=(
     "Microsoft.MICore.dll"
@@ -61,21 +60,28 @@ declare -a files=(
     "vscode/Microsoft.DebugEngineHost.${dllExt}"
 )
 
-for f in "${files[@]}" ; do
-    echo "Copying '$src/$f' ..."
-    cp -p "$src/$f" "$dst"
-    [[ $? == 0 ]] || { echo "Failed!!!" ; exit 1 ; }
-    if [[ -d "$dst2" ]]; then
-	cp -p "$src/$f" "$dst2"
-	[[ $? == 0 ]] || { echo "Failed!!!" ; exit 1 ; }
+for dst in "${dsts[@]}" ; do
+    if [[ ! -d "$dst" ]]; then
+        echo "Destination directory '$dst' does not exist"
+        [[ "$dst" == "$dst1" ]] && exit 1
+        continue
+    else
+        echo "Destination dir '$dst'"
     fi
-    if [[ -d "$dst3" ]]; then
-	cp -p "$src/$f" "$dst3"
-	[[ $? == 0 ]] || { echo "Failed!!!" ; exit 1 ; }
-    fi
-done
 
-echo "Listing of '$dst'"
-ls -lrt "$dst"
-[[ -d "$dst2" ]] && echo "Listing of '$dst2'" && ls -lrt "$dst2"
-[[ -d "$dst3" ]] && echo "Listing of '$dst3'" && ls -lrt "$dst3"
+    if [[ ! -d "${dst}.bak" ]]; then
+        echo "Making a backup of '$dst'"
+        cp -r "$dst" "${dst}.bak"
+        [[ $? == 0 ]] || { echo Failed to create backup ; exit 1 ; }
+    else
+        echo "Note: Backup '${dst}.bak' already exists..."
+    fi
+
+    for f in "${files[@]}" ; do
+        echo "Copying '$src/$f' ..."
+        cp -p "$src/$f" "$dst"
+        [[ $? == 0 ]] || { echo "Failed!!!" ; exit 1 ; }
+    done
+    echo "Listing of '$dst'"
+    ls -lrt "$dst"
+done
