@@ -22,8 +22,13 @@ done
 [[ "$src" == "" ]] && { echo "Error: No suitable source dir found." ; exit 1 ; }
 
 if [[ "$src" == "$LOCAL_DIR" ]];then
-    rm -fr "$REMOTE_DIR"
+    if [[ -d "$REMOTE_DIR" ]]; then
+        rm -fr "$REMOTE_DIR"
+        [[ $? == 0 ]] || { echo Failed to delete $REMOTE_DIR ; exit 1 ; }
+    fi
+    echo "Copyying '$src' to '$REMOTE_DIR' ..."
     cp -pr "$src"  "$REMOTE_DIR"
+    [[ $? == 0 ]] || { echo Failed to copy to $REMOTE_DIR ; exit 1 ; }
 fi
 
 dllExt='dll.mdb'
@@ -41,11 +46,11 @@ dst1="$exthome/$extdir/debugAdapters/bin"
 dst2="${dst1//.vscode/.vscode-oss-dev}"
 dst3="${dst1//.vscode/.vscode-insiders}"
 
-declare -a dsts=(
-    "$dst1"
-    "$dst2"
-    "$dst3"
-)
+declare -a dsts=("$dst1")
+[[ -d "$dst2" ]] && dsts+=("$dst2")
+[[ -d "$dst3" ]] && dsts+=("$dst3")
+
+# (IFS=$'\n'; echo "${dsts[*]}")
 
 declare -a files=(
     "Microsoft.MICore.dll"
@@ -61,14 +66,7 @@ declare -a files=(
 )
 
 for dst in "${dsts[@]}" ; do
-    if [[ ! -d "$dst" ]]; then
-        echo "Destination directory '$dst' does not exist"
-        [[ "$dst" == "$dst1" ]] && exit 1
-        continue
-    else
-        echo "Destination dir '$dst'"
-    fi
-
+    echo "Destination dir '$dst'"
     if [[ ! -d "${dst}.bak" ]]; then
         echo "Making a backup of '$dst'"
         cp -r "$dst" "${dst}.bak"
@@ -84,4 +82,5 @@ for dst in "${dsts[@]}" ; do
     done
     echo "Listing of '$dst'"
     ls -lrt "$dst"
+    echo ======================================================================
 done
