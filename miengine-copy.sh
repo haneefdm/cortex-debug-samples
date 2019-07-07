@@ -24,10 +24,11 @@ done
 if [[ "$src" == "$LOCAL_DIR" ]];then
     if [[ -d "$REMOTE_DIR" ]]; then
         rm -fr "$REMOTE_DIR"
-        [[ $? == 0 ]] || { echo Failed to delete $REMOTE_DIR ; exit 1 ; }
+        [[ $? == 0 ]] || { echo Failed to compeletel delete $REMOTE_DIR ; }
     fi
     echo "Copyying '$src' to '$REMOTE_DIR' ..."
-    cp -pr "$src"  "$REMOTE_DIR"
+    mkdir -p "$REMOTE_DIR"
+    cp -fpr "$src"/*  "$REMOTE_DIR"
     [[ $? == 0 ]] || { echo Failed to copy to $REMOTE_DIR ; exit 1 ; }
 fi
 
