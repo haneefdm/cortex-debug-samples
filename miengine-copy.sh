@@ -40,11 +40,11 @@ dst1="$exthome/$extdir/debugAdapters/bin"
 dst2="${dst1//.vscode/.vscode-oss-dev}"
 dst3="${dst1//.vscode/.vscode-insiders}"
 
-declare -a dsts=(
-    "$dst1"
-    "$dst2"
-    "$dst3"
-)
+declare -a dsts=("$dst1")
+[[ -d "$dst2" ]] && dsts+=("$dst2")
+[[ -d "$dst3" ]] && dsts+=("$dst3")
+
+# (IFS=$'\n'; echo "${dsts[*]}")
 
 declare -a files=(
     "Microsoft.MICore.dll"
@@ -86,4 +86,5 @@ for dst in "${dsts[@]}" ; do
     done
     echo "Listing of '$dst'"
     ls -lrt "$dst"
+    echo ======================================================================
 done
