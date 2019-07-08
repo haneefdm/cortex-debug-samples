@@ -12,7 +12,7 @@ declare -a srcdirs=(
     "${SOURCE_DIR/#J://media/myxps0-j}"
 )
 
-( IFS=$'\n'; echo "${srcdirs[*]}" ) ; exit 0
+#( IFS=$'\n'; echo "${srcdirs[*]}" ) ; exit 0
 
 src=
 for d in "${srcdirs[@]}" ; do
