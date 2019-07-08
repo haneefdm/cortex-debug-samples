@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
-REMOTE_DIR='V:/VSCode/MIEngine.dist/Desktop.Debug'
-LOCAL_DIR='C:/Users/hdm/vscode/MIEngine/bin/Desktop.Debug'
+SOURCE_DIR='J:/VSCode/MIEngine/bin/Desktop.Debug'
 
 declare -a srcdirs=(
-    "$LOCAL_DIR"
-    "$REMOTE_DIR"
-    "${REMOTE_DIR//V:/J:}"
-    '/Volumes/J/VSCode/MIEngine.dist/Desktop.Debug'
-    '/media/myxps0-j/VSCode/MIEngine.dist/Desktop.Debug'
+    # Primary machine where build actually happens
+    "$SOURCE_DIR"
+    # my second windows machine
+    "${SOURCE_DIR//J:/V:}"
+    # My mac
+    "${SOURCE_DIR//J:/\/Volumes\/J}"
+    # My linux
+    "${SOURCE_DIR//J:/\/media\/myxps0-j}"
 )
+
+#( IFS=$'\n'; echo "${srcdirs[*]}" ) ; exit 0
 
 src=
 for d in "${srcdirs[@]}" ; do
@@ -20,11 +24,6 @@ for d in "${srcdirs[@]}" ; do
     echo "Skipping source dir '$d' not found"
 done
 [[ "$src" == "" ]] && { echo "Error: No suitable source dir found." ; exit 1 ; }
-
-if [[ "$src" == "$LOCAL_DIR" ]];then
-    rm -fr "$REMOTE_DIR"
-    cp -pr "$src"  "$REMOTE_DIR"
-fi
 
 dllExt='dll.mdb'
 exeExt='exe.mdb'
@@ -62,8 +61,11 @@ declare -a files=(
 
 for dst in "${dsts[@]}" ; do
     if [[ ! -d "$dst" ]]; then
-        echo "Destination directory '$dst' does not exist"
-        [[ "$dst" == "$dst1" ]] && exit 1
+        if [[ "$dst" == "$dst1" ]]; then
+            echo "Destination directory '$dst' does not exist"
+            exit 1
+        fi
+        echo "Skipping destination dir '$dst'"
         continue
     else
         echo "Destination dir '$dst'"
