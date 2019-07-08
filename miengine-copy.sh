@@ -5,14 +5,14 @@ declare -a srcdirs=(
     # Primary machine where build actually happens
     "$SOURCE_DIR"
     # my second windows machine
-    "${SOURCE_DIR//J:/V:}"
+    "${SOURCE_DIR/#J:/V:}"
     # My mac
-    "${SOURCE_DIR//J:/\/Volumes\/J}"
+    "${SOURCE_DIR/#J://Volumes/J}"
     # My linux
-    "${SOURCE_DIR//J:/\/media\/myxps0-j}"
+    "${SOURCE_DIR/#J://media/myxps0-j}"
 )
 
-#( IFS=$'\n'; echo "${srcdirs[*]}" ) ; exit 0
+( IFS=$'\n'; echo "${srcdirs[*]}" ) ; exit 0
 
 src=
 for d in "${srcdirs[@]}" ; do
