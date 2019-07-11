@@ -1,29 +1,14 @@
 #!/usr/bin/env bash
-SOURCE_DIR='J:/VSCode/MIEngine/bin/Desktop.Debug'
 
-declare -a srcdirs=(
-    # Primary machine where build actually happens
-    "$SOURCE_DIR"
-    # my second windows machine
-    "${SOURCE_DIR/#J:/V:}"
-    # My mac
-    "${SOURCE_DIR/#J://Volumes/J}"
-    # My linux
-    "${SOURCE_DIR/#J://media/myxps0-j}"
-)
-
-#( IFS=$'\n'; echo "${srcdirs[*]}" ) ; exit 0
-
-src=
-for d in "${srcdirs[@]}" ; do
-    if [[ -d "$d" ]]; then
-    	src="$d"
-    	echo "Using source dir '$src'"
-    	break
-    fi
-    echo "Skipping source dir '$d' not found"
-done
-[[ "$src" == "" ]] && { echo "Error: No suitable source dir found." ; exit 1 ; }
+src='J:/VSCode/MIEngine/bin/Desktop.Debug'
+mycp=cp
+if [[ -d "$src" ]]; then
+    echo "Using local-dir '$src'"
+else
+    mycp="scp -q"
+    src="hdm@192.168.1.172:/$src"
+    echo "Using remote-dir '$src'"
+fi
 
 dllExt='dll.mdb'
 exeExt='exe.mdb'
@@ -81,7 +66,7 @@ for dst in "${dsts[@]}" ; do
 
     for f in "${files[@]}" ; do
         echo "Copying '$src/$f' ..."
-        cp -p "$src/$f" "$dst"
+        $mycp -p "$src/$f" "$dst"
         [[ $? == 0 ]] || { echo "Failed!!!" ; exit 1 ; }
     done
     echo "Listing of '$dst'"
