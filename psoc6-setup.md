@@ -117,4 +117,6 @@
 
 7. Besides the 'Debug Console', look in the Output tab next to it (select the 'Adapter Output` from the dropdown) to see the output from the gdb-server. If the OpenOCD server does not start properly, you will see some messages here.
 
-![Example error](./images/openocd-error.jpg)
+    ![Example error](./images/openocd-error.jpg)
+
+8. FreeRTOS notes: Depending on the version, you may not have all the symbols required for OpenOCD to detect the rtos. Specifically, the symbol `uxTopUsedPriority`. [See this file](https://github.com/gnu-mcu-eclipse/openocd/blob/20b0eca0490fbc4f38f69eed8542cb082b354b03/contrib/rtos-helpers/FreeRTOS-openocd.c#L20). Make sure you compile it as "C" code and not "C++". Use `objdump` or some such utility to make sure your final executable contains this symbol.
