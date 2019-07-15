@@ -18,10 +18,7 @@
                 "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
             ],
             "configFiles": [
-                // Above two lines should have done the trick. But issues
-                // prevail with tcp ports and multiple cores
                 "openocd.tcl",
-                //"tmp.tcl"
             ],
             "preLaunchCommands": [
                 "set mem inaccessible-by-default off",
@@ -53,6 +50,7 @@
             // OS/user specific paths. They are better set using environment variables. settings.json
             // is another place you can set them. Spaces, special chars in path names can cause issues
             "osx": {
+                // "armToolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
                 "toolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
                 "serverpath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
             },
@@ -66,14 +64,62 @@
                 "serverpath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
                 "svdFile": "${env:USERPROFILE}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             },
-
             // Optional entries
             // svdFiles can be very large.
-            // "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
-            "svdFile": "xmc4700.svd",
+            "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             "runToMain": false,         // if true, program will halt at main. Only for fresh starts, not a restart
             "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
             "showDevDebugOutput": false, // Shows output of GDB, helpful when something is not working right
+            
+            // Only for Cortex-Debug extension developers
+            //"debugServer": 4711,
+        },
+        {
+            "cwd": "${workspaceRoot}",
+            "executable": "main_final.elf",
+            "name": "Attach PSoC6 CM4 (OpenOCD)",
+            "request": "attach",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "searchDir": [ 
+                "${workspaceRoot}",
+                "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
+                "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
+                "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
+            ],
+            "configFiles": [
+                "openocd.tcl",
+            ],
+            "preAttachCommands": [
+                "set mem inaccessible-by-default off",
+            ],
+            "postRestartCommands": [
+                "monitor psoc6 reset_halt sysresetreq",
+                "monitor gdb_sync",
+                "stepi"
+            ],
+
+            // OS/user specific paths. They are better set using environment variables. settings.json
+            // is another place you can set them. Spaces, special chars in path names can cause issues
+            "osx": {
+                // "armToolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
+                "toolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+            },
+            "linux": {
+                "toolchainPath": "${env:HOME}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+                "svdFile": "${env:HOME}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            },
+            "windows": {
+                "toolchainPath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
+                "svdFile": "${env:USERPROFILE}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            },
+            // Optional entries
+            // svdFiles can be very large.
+            "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            "showDevDebugOutput": true, // Shows output of GDB, helpful when something is not working right
             
             // Only for Cortex-Debug extension developers
             "debugServer": 4711,
@@ -83,7 +129,7 @@
         {
             "cwd": "${workspaceRoot}",
             "executable": "main_final.elf",
-            "name": "Attach PSoC6 CM4 (OpenOCD)",
+            "name": "xAttach PSoC6 CM4 (OpenOCD)",
             "request": "attach",
             "type": "cortex-debug",
             "servertype": "openocd",

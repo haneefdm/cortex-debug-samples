@@ -53,6 +53,11 @@ int main(int argc, char **argv)
     timeout = mySleep(timeout);
     timeout = mySleep(timeout);
 
+    for (;;) {
+        mySleep(1000);
+        timeout++;
+    }
+
     // Place breakpoint below and make sure 'argv' is still expanded and cotinue.
     // Randomly pause debugger giving about a second between pauses. Tree loses state.
     std::cout << helpText << std::endl; // <=== place breakpoint here

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component_data>
+  <File wkspFile="cy8c6xx7_cm4_dual.ld" installFile="psoc6sw-1.2/components/psoc6pdl/devices/bsp/COMPONENT_MTB/linker/TOOLCHAIN_GCC_ARM/cy8c6xx7_cm4_dual.ld" checksum="976B331663A82C2B158434EC5C3E16C5AFB75E3D"/>
+  <File wkspFile="Source/main.c" installFile="Source/main.c" checksum="30A786B8E68B49325D8F179FF2DE7858329B11AD"/>
+  <File wkspFile="design.modus" installFile="design.modus" checksum="9EBB88256E15F22081156B399294DC12D76B0E4D"/>
+  <File wkspFile="psoc6sw-1.2/components/psoc6cm0p/COMPONENT_CM0P_SLEEP/psoc6_01_cm0p_sleep.c" installFile="psoc6sw-1.2/components/psoc6cm0p/COMPONENT_CM0P_SLEEP/psoc6_01_cm0p_sleep.c" checksum="46369B8E0AB32563D6A6F3B8474472B21245AB6C"/>
+  <File wkspFile="psoc6sw-1.2/components/psoc6pdl/devices/bsp/COMPONENT_MTB/startup/TOOLCHAIN_GCC_ARM/startup_psoc6_01_cm4.S" installFile="psoc6sw-1.2/components/psoc6pdl/devices/bsp/COMPONENT_MTB/startup/TOOLCHAIN_GCC_ARM/startup_psoc6_01_cm4.S" checksum="F588109B80706A2549C1FE9D3E7A526A6F1B3CC9"/>
+  <File wkspFile="psoc6sw-1.2/components/psoc6pdl/devices/bsp/COMPONENT_MTB/startup/system_psoc6_cm4.c" installFile="psoc6sw-1.2/components/psoc6pdl/devices/bsp/COMPONENT_MTB/startup/system_psoc6_cm4.c" checksum="41F1BA98309BD414BF8F0CE737E112A054620D99"/>
+  <artifact name="mainapp"/>
+</component_data>

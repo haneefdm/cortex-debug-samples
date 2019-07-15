@@ -1,5 +1,6 @@
 #debug_level 3
 set ENABLE_CM0 0
+set ENABLE_ACQUIRE 0
 source [find interface/kitprog3.cfg];
 source [find target/psoc6.cfg];
 # ${TARGET}.cm4 configure -rtos auto

@@ -27,13 +27,6 @@
                 "monitor psoc6 reset_halt sysresetreq"
             ],
             "postRestartCommands": [
-                /*
-                // Following three commands are needed because Cortex-Debug is hardcoded to do a
-                // `monitor reset halt`. Creates a problem for multi core systems like
-                // PSoC6, so this is a workaround. Normally, only a sysresetreq is needed for PSoc6
-                */
-                "monitor reset run",
-                "monitor sleep 200",
                 "monitor psoc6 reset_halt sysresetreq",
                 /*
                 // Following two commands are needed to get gdb and openocd and HW all in sync.
@@ -57,50 +50,32 @@
             },
             "runToMain": true,          // if true, program will halt at main. Not used for a restart
             "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
-            "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
-        },
+            "showDevDebugOutput": true,// Shows output of GDB, helpful when something is not working right
+
+            // Only for Cortex-Debug extension developers
+            "debugServer": 4711,        },
         {
             "cwd": "${workspaceRoot}",
             "executable": "BlinkyLED_mainapp/Debug/BlinkyLED_mainapp_final.elf",
-            "name": "xLaunch PSoC6 CM4 (OpenOCD)",
-            "request": "launch",
+            "name": "Attach PSoC6 CM4 (OpenOCD)",
+            "request": "attach",
             "type": "cortex-debug",
             "servertype": "openocd",
             "searchDir": [ 
                 "${workspaceRoot}",
                 "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
-                "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/scripts/"
+                "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
+                "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
             ],
             "configFiles": [
-                //"interface/kitprog3.cfg",
-                //"target/psoc6.cfg"
-                // Above two lines should have done the trick. But issues
-                // prevail with tcp ports and multiple cores
-                "openocd.tcl"
+                "openocd.tcl",
             ],
-            "preLaunchCommands": [
+            "overrideAttachCommands": [
                 "set mem inaccessible-by-default off",
-            ],
-            "postLaunchCommands": [
-                "monitor reset run",
-                "monitor sleep 200",
-                "monitor psoc6 reset_halt sysresetreq"
+                "monitor halt"
             ],
             "postRestartCommands": [
-                /*
-                // Following three commands are needed because Cortex-Debug is hardcoded to do a 'monitor reset halt'
-                // Creates a problem for multi core systems like PSoC6, so this is a workaround. Normally, only a
-                // sysresetreq is needed for PSoc6
-                */
-                "monitor reset run",
-                "monitor sleep 200",
                 "monitor psoc6 reset_halt sysresetreq",
-                /*
-                // Following two commands are needed to get gdb and openocd and HW all in sync.
-                // Or, execution context (PC, stack, registers, etc.) look like they are from before reset.
-                // The stepi, is a pretend instruction that does not actually do a stepi, but MUST be done
-                // Its a documented workaround in openocd. Do a 'monitor help' to see more info
-                */
                 "monitor gdb_sync",
                 "stepi"
             ],
@@ -108,31 +83,34 @@
             // OS/user specific paths. They are better set using environment variables. settings.json
             // is another place you can set them. Spaces, special chars in path names can cause issues
             "osx": {
+                // "armToolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
                 "toolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
                 "serverpath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+            },
+            "linux": {
+                "toolchainPath": "${env:HOME}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+                "svdFile": "${env:HOME}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             },
             "windows": {
                 "toolchainPath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
                 "serverpath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
                 "svdFile": "${env:USERPROFILE}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             },
-
             // Optional entries
             // svdFiles can be very large.
             "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
-            "runToMain": true,          // if true, program will halt at main. Only for fresh starts, not a restart
-            "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
-            "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
+            "showDevDebugOutput": true, // Shows output of GDB, helpful when something is not working right
             
             // Only for Cortex-Debug extension developers
-            // "debugServer": 4711,
+            "debugServer": 4711,
         },
 
         // EVERYTHING BELOW THIS POINT IS EXPERIMENTAL
         {
             "cwd": "${workspaceRoot}",
             "executable": "BlinkyLED_mainapp/Debug/BlinkyLED_mainapp_final.elf",
-            "name": "Attach PSoC6 CM4 (OpenOCD)",
+            "name": "xAttach PSoC6 CM4 (OpenOCD)",
             "request": "attach",
             "type": "cortex-debug",
             "servertype": "openocd",

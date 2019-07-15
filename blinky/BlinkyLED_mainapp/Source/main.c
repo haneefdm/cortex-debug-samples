@@ -54,8 +54,20 @@
 #include "cycfg.h"
 #include "./blah.h"
 
+int f2(int f2v)
+{
+    int x = f2v+3;
+    Cy_SysLib_Delay(f2v);
+}
+int f1(int f1v)
+{
+    int x = f1v*2;
+    f2(x);
+}
+
 int main(void)
 {
+    int x = 3;
 	trigger_set_t blah = {
 			false, 0, 1, 7, 9, 1.3, 10000, 5000
 	};
@@ -67,6 +79,8 @@ int main(void)
     
     /* enable interrupts */
     __enable_irq();
+
+    f1(x);
 
     for (;;)
     {
