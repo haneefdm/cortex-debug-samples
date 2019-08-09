@@ -42,7 +42,7 @@ dependents:
 BlinkyLED2_mainapp.elf: $(OBJS) $(USER_OBJS) /Users/hdm/cypress/vscode/cortex-debug-samples/blink2/psoc6pdl_Cortex-M4/Debug/libpsoc6pdl_Cortex-M4.a
 	@echo 'Building target: $@'
 	@echo 'Invoking: GNU ARM Cross C Linker'
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -Og -ffunction-sections -fdata-sections -Wall  -g3 -T "/Users/hdm/cypress/vscode/cortex-debug-samples/blink2/BlinkyLED2_mainapp/cy8c6xx7_cm4_dual.ld" -Xlinker --gc-sections -Wl,-Map,"BlinkyLED2_mainapp.map" --specs=nano.specs -ffat-lto-objects -g --enable-objc-gc -mfpu=fpv4-sp-d16 -o "BlinkyLED2_mainapp.elf" -Wl,--start-group $(OBJS) $(USER_OBJS) $(LIBS) -Wl,--end-group
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -O0 -ffunction-sections -fdata-sections -Wall  -g3 -T "/Users/hdm/cypress/vscode/cortex-debug-samples/blink2/BlinkyLED2_mainapp/cy8c6xx7_cm4_dual.ld" -Xlinker --gc-sections -Wl,-Map,"BlinkyLED2_mainapp.map" --specs=nano.specs -ffat-lto-objects -g --enable-objc-gc -mfpu=fpv4-sp-d16 -o "BlinkyLED2_mainapp.elf" -Wl,--start-group $(OBJS) $(USER_OBJS) $(LIBS) -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build

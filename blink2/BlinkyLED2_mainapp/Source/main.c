@@ -53,10 +53,28 @@
 #include "cy_pdl.h"
 #include "cycfg.h"
 
+volatile int MyGlob = 0;
+volatile int x = 3;
+static volatile int MyStatic = 4444;
+
+typedef struct {
+    int a, b;
+} t_inner;
+
+typedef struct {
+    int a, b;
+    t_inner inner;
+} t_struct;
+
+t_struct mystruct = {5, 10, {20, 21}};
+
 int f2(int f2v)
 {
+    static volatile int MyStatic = 5555;
     int x = f2v+3;
-    Cy_SysLib_Delay(x);
+    Cy_SysLib_Delay(MyStatic+x);
+    mystruct.a += ++mystruct.b;
+    MyStatic += ++MyGlob;
     return x;
 }
 
@@ -64,19 +82,23 @@ int f1(int f1v)
 {
     int x = f1v*2;
     f2(x);
+    MyGlob++;
+    MyStatic++;
     return x;
 }
 
 int main(void)
 {
-    int x = 3;
     /* Set up internal routing, pins, and clock-to-peripheral connections */
     init_cycfg_all();
     
     /* enable interrupts */
     __enable_irq();
 
-    f1(x);
+    for (;;)
+    {
+        x = f1(x);
+    }
 
     for (;;)
     {

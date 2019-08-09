@@ -32,7 +32,7 @@ DEVICE=CY8C6247BZI-D54
 # Toolchain, its optimization level and the configuration (Debug/Release) type
 #
 TOOLCHAIN=GCC
-OPTIMIZATION = Og
+OPTIMIZATION = O0
 CONFIG = Debug
 
 # Define custom linker script location (<ABSOLUTE PATH>/customScript.ld)

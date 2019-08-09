@@ -68,6 +68,7 @@
 <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="${config_name:BlinkyLED2_mainapp}/BlinkyLED2_mainapp_final.elf"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="BlinkyLED2_mainapp"/>
 <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="true"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value=""/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/BlinkyLED2_mainapp"/>
 </listAttribute>

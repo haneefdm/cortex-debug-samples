@@ -13,20 +13,32 @@
             "servertype": "openocd",
             "searchDir": [ 
                 "${workspaceRoot}",
-                "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
-                "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
-                "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
+                "/Applications/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts/",
+                "${env:USERPROFILE}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts/",
+                "${env:HOME}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts/",
             ],
             "configFiles": [
                 "openocd.tcl",
             ],
-            "preLaunchCommands": [
+            "preLaunchCommandsx": [
                 "set mem inaccessible-by-default off",
             ],
-            "postLaunchCommands": [
+            "postLaunchCommandsx": [
                 "monitor reset run",
                 "monitor sleep 200",
                 "monitor psoc6 reset_halt sysresetreq"
+            ],
+            "overrideLaunchCommands": [
+                "set mem inaccessible-by-default off",
+                "monitor reset halt",
+                "-target-download",
+                "monitor reset run",
+                "monitor sleep 200",
+                "monitor psoc6 reset_halt sysresetreq",
+                //"source freertos.gdbinit",
+                "-enable-pretty-printing",
+                //"monitor gdb_sync",
+                //"stepi"
             ],
             "postRestartCommands": [
                 /*
@@ -50,23 +62,24 @@
             // OS/user specific paths. They are better set using environment variables. settings.json
             // is another place you can set them. Spaces, special chars in path names can cause issues
             "osx": {
-                // "armToolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
-                "toolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
-                "serverpath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+                // "armToolchainPath": "/Applications/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin",
+                "toolchainPath": "/Applications/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "/Applications/ModusToolbox-VSCode-2.0/tools/openocd-2.2/bin/openocd",
             },
             "linux": {
-                "toolchainPath": "${env:HOME}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
-                "serverpath": "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
-                "svdFile": "${env:HOME}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+                "toolchainPath": "${env:HOME}/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "${env:HOME}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/bin/openocd",
+                "svdFile": "${env:HOME}/ModusToolbox-VSCode-2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             },
             "windows": {
-                "toolchainPath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
-                "serverpath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
-                "svdFile": "${env:USERPROFILE}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+                "toolchainPath": "${env:USERPROFILE}/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "${env:USERPROFILE}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/bin/openocd.exe",
+                "svdFile": "${env:USERPROFILE}/ModusToolbox-VSCode-2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             },
             // Optional entries
             // svdFiles can be very large.
-            "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            //"svdFile": "/Applications/ModusToolbox-VSCode-2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            "svdFile": "${workspaceRoot}/xmc4700.svd",
             "runToMain": false,         // if true, program will halt at main. Only for fresh starts, not a restart
             "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
             "showDevDebugOutput": false, // Shows output of GDB, helpful when something is not working right
@@ -83,9 +96,9 @@
             "servertype": "openocd",
             "searchDir": [ 
                 "${workspaceRoot}",
-                "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
-                "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
-                "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
+                "/Applications/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts/",
+                "${env:USERPROFILE}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts/",
+                "${env:HOME}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts/",
             ],
             "configFiles": [
                 "openocd.tcl",
@@ -98,27 +111,26 @@
                 "monitor gdb_sync",
                 "stepi"
             ],
-
             // OS/user specific paths. They are better set using environment variables. settings.json
             // is another place you can set them. Spaces, special chars in path names can cause issues
             "osx": {
-                // "armToolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
-                "toolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
-                "serverpath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+                // "armToolchainPath": "/Applications/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin",
+                "toolchainPath": "/Applications/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "/Applications/ModusToolbox-VSCode-2.0/tools/openocd-2.2/bin/openocd",
             },
             "linux": {
-                "toolchainPath": "${env:HOME}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
-                "serverpath": "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
-                "svdFile": "${env:HOME}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+                "toolchainPath": "${env:HOME}/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "${env:HOME}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/bin/openocd",
+                "svdFile": "${env:HOME}/ModusToolbox-VSCode-2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             },
             "windows": {
-                "toolchainPath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
-                "serverpath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
-                "svdFile": "${env:USERPROFILE}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+                "toolchainPath": "${env:USERPROFILE}/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "${env:USERPROFILE}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/bin/openocd.exe",
+                "svdFile": "${env:USERPROFILE}/ModusToolbox-VSCode-2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             },
             // Optional entries
             // svdFiles can be very large.
-            "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            "svdFile": "/Applications/ModusToolbox-VSCode-2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             "showDevDebugOutput": true, // Shows output of GDB, helpful when something is not working right
             
             // Only for Cortex-Debug extension developers
@@ -135,8 +147,8 @@
             "servertype": "openocd",
             "searchDir": [ 
                 "${workspaceRoot}",
-                "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
-                "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/scripts/"
+                "/Applications/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts/",
+                "${env:USERPROFILE}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts/"
             ],
             "configFiles": [
                 //"interface/kitprog3.cfg",
@@ -176,18 +188,18 @@
             // OS/user specific paths. They are better set using environment variables. settings.json
             // is another place you can set them. Spaces, special chars in path names can cause issues
             "osx": {
-                "toolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
-                "serverpath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+                "toolchainPath": "/Applications/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "/Applications/ModusToolbox-VSCode-2.0/tools/openocd-2.2/bin/openocd",
             },
             "windows": {
-                "toolchainPath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin",
-                "serverpath": "${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
-                "svdFile": "${env:USERPROFILE}/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+                "toolchainPath": "${env:USERPROFILE}/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin",
+                "serverpath": "${env:USERPROFILE}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/bin/openocd.exe",
+                "svdFile": "${env:USERPROFILE}/ModusToolbox-VSCode-2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             },
 
             // Optional entries
             // svdFiles can be very large.
-            "svdFile": "/Applications/ModusToolbox_2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
+            "svdFile": "/Applications/ModusToolbox-VSCode-2.0/libraries/udd-1.1/udd/devices/MXS40/PSoC6ABLE2/studio/svd/psoc6_01.svd",
             "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
             
             // Only for Cortex-Debug extension developers
@@ -221,7 +233,7 @@
                 { "text": "-interpreter-exec console \"monitor reset\"", "ignoreFailures": false },
                 { "text": "-enable-pretty-printing" }
             ],
-            "logging": {
+            "loggingx": {
                 "moduleLoad": true,
                 "traceResponse": true,
                 "trace": true,
@@ -236,7 +248,7 @@
             },
             "osx": {
                 "MIMode": "gdb",
-                "MIDebuggerPath": "arm-none-eabi-gdb",
+                "MIDebuggerPath": "/Applications/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin/arm-none-eabi-gdb",
                 "debugServerPath": "pyocd-gdbserver"
             },
             "windows": {
@@ -283,22 +295,22 @@
             },
             "linux": {
                 "MIMode": "gdb",
-                "MIDebuggerPath": "${env:HOME}/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin/arm-none-eabi-gdb",
-                "debugServerPath": "${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
-                "debugServerArgs": "-s ${workspaceRoot} -s ${env:HOME}/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl"
+                "MIDebuggerPath": "${env:HOME}/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin/arm-none-eabi-gdb",
+                "debugServerPath": "${env:HOME}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/bin/openocd",
+                "debugServerArgs": "-s ${workspaceRoot} -s ${env:HOME}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts -f openocd.tcl"
             },
             "osx": {
                 "MIMode": "gdb",
                 //"MIDebuggerPath": "arm-none-eabi-gdb",
-                "MIDebuggerPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin/arm-none-eabi-gdb",
-                "debugServerPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
-                "debugServerArgs": "-s ${workspaceRoot} -s /Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl"
+                "MIDebuggerPath": "/Applications/ModusToolbox-VSCode-2.0/tools/gcc-7.2.1-1.0/bin/arm-none-eabi-gdb",
+                "debugServerPath": "/Applications/ModusToolbox-VSCode-2.0/tools/openocd-2.2/bin/openocd",
+                "debugServerArgs": "-s ${workspaceRoot} -s /Applications/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts -f openocd.tcl"
             },
             "windows": {
                 "MIMode": "gdb",
                 "MIDebuggerPath": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\6 2017-q2-update\\bin\\arm-none-eabi-gdb.exe",
-                "debugServerPath": "C:/Users/hdm/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd.exe",
-                "debugServerArgs": "-s ${workspaceRoot} -s ${env:USERPROFILE}/ModusToolbox_2.0/tools/openocd-2.2/scripts -f openocd.tcl"
+                "debugServerPath": "C:/Users/hdm/ModusToolbox-VSCode-2.0/tools/openocd-2.2/bin/openocd.exe",
+                "debugServerArgs": "-s ${workspaceRoot} -s ${env:USERPROFILE}/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts -f openocd.tcl"
             }
         },
         {
@@ -384,7 +396,7 @@
             "configFiles": [ "${workspaceFolder}/openocd.tcl" ],
             "searchDir": [ 
                 "${workspaceRoot}",
-                "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/"
+                "/Applications/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts/"
             ],
             "internalConsoleOptions":"openOnSessionStart",
             //"internalConsoleOptions": "openOnFirstSessionStart",
@@ -435,8 +447,8 @@
             "configFiles": [ "${workspaceFolder}/openocd.tcl" ],
             "searchDir": [ 
                 "${workspaceRoot}",
-                "C:/Users/hdm/ModusToolbox_2.0/tools/openocd-2.2/scripts/",
-                "/Applications/ModusToolbox_2.0/tools/openocd-2.2/scripts/"
+                "C:/Users/hdm/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts/",
+                "/Applications/ModusToolbox-VSCode-2.0/tools/openocd-2.2/scripts/"
             ],
             "preAttachCommands": [
                 "set mem inaccessible-by-default off"

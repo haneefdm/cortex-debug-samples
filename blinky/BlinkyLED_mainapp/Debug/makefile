@@ -52,7 +52,7 @@ clean:
 	-@echo ' '
 
 post-build:
-	-/Applications/ModusToolbox_1.1/tools/modus-shell-1.0/bin/bash --norc --noprofile /Applications/ModusToolbox_1.1/libraries/psoc6sw-1.2/makefiles/platforms/PSoC6_cm4_dual/cymcuelftool_postbuild.bash /Applications/ModusToolbox_1.1/tools/cymcuelftool-1.0/bin/cymcuelftool /Users/hdm/cypress/vscode/cortex-debug-samples/blinky/BlinkyLED_mainapp/psoc6_01_cm0p_sleep.elf /Users/hdm/cypress/vscode/cortex-debug-samples/blinky/BlinkyLED_mainapp/Debug/BlinkyLED_mainapp.elf ARM_CM4
+	-/Applications/ModusToolbox_1.0/tools/modus-shell-1.0/bin/bash --norc --noprofile /Applications/ModusToolbox_1.0/libraries/psoc6sw-1.2/makefiles/platforms/PSoC6_cm4_dual/cymcuelftool_postbuild.bash /Applications/ModusToolbox_1.0/tools/cymcuelftool-1.0/bin/cymcuelftool /Users/hdm/cypress/vscode/cortex-debug-samples/blinky/BlinkyLED_mainapp/psoc6_01_cm0p_sleep.elf /Users/hdm/cypress/vscode/cortex-debug-samples/blinky/BlinkyLED_mainapp/Debug/BlinkyLED_mainapp.elf ARM_CM4
 	-@echo ' '
 
 secondary-outputs:

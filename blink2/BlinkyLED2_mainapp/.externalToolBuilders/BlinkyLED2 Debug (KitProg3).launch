@@ -18,6 +18,7 @@
 <intAttribute key="ilg.gnumcueclipse.debug.gdbjtag.openocd.gdbServerGdbPortNumber" value="3333"/>
 <stringAttribute key="ilg.gnumcueclipse.debug.gdbjtag.openocd.gdbServerLog" value=""/>
 <stringAttribute key="ilg.gnumcueclipse.debug.gdbjtag.openocd.gdbServerOther" value="-s &quot;${cy_tools_path:openocd}/scripts&quot;&#13;&#10;-s &quot;${workspace_loc}/BlinkyLED2_config/GeneratedSource&quot;&#13;&#10;-c &quot;source [find interface/kitprog3.cfg]&quot;&#13;&#10;-c &quot;source [find target/psoc6.cfg]&quot;&#13;&#10;-c &quot;gdb_port 3332&quot;&#13;&#10;-c &quot;puts stderr {Started by GNU MCU Eclipse}&quot;&#13;&#10;-c &quot;init; reset init&quot;"/>
+<stringAttribute key="ilg.gnumcueclipse.debug.gdbjtag.openocd.gdbServerTclPortNumber" value="6666"/>
 <intAttribute key="ilg.gnumcueclipse.debug.gdbjtag.openocd.gdbServerTelnetPortNumber" value="4444"/>
 <stringAttribute key="ilg.gnumcueclipse.debug.gdbjtag.openocd.otherInitCommands" value=""/>
 <stringAttribute key="ilg.gnumcueclipse.debug.gdbjtag.openocd.otherRunCommands" value="mon psoc6 reset_halt sysresetreq"/>
@@ -49,10 +50,13 @@
 <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="${config_name:BlinkyLED2_mainapp}/BlinkyLED2_mainapp_final.elf"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="BlinkyLED2_mainapp"/>
 <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="true"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value=""/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/BlinkyLED2_mainapp"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>
 </listAttribute>
+<stringAttribute key="org.eclipse.dsf.launch.MEMORY_BLOCKS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;memoryBlockExpressionList context=&quot;Context string&quot;/&gt;&#10;"/>
+<stringAttribute key="process_factory_id" value="org.eclipse.cdt.dsf.gdb.GdbProcessFactory"/>
 </launchConfiguration>

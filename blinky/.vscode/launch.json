@@ -53,7 +53,8 @@
             "showDevDebugOutput": true,// Shows output of GDB, helpful when something is not working right
 
             // Only for Cortex-Debug extension developers
-            "debugServer": 4711,        },
+            // "debugServer": 4711,
+        },
         {
             "cwd": "${workspaceRoot}",
             "executable": "BlinkyLED_mainapp/Debug/BlinkyLED_mainapp_final.elf",
