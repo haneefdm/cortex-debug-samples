@@ -2,9 +2,9 @@
 
 Repo for storing misc. stuff related to corted-debug testing
 
-File cortex-debug-0.2.4.vsix is my latest cortex-debug extension that contains certain fixes. Will keep this available until my changes are officially merged into <https://github.com/Marus/cortex-debug>
+File cortex-debug-0.X.Y.vsix is my latest cortex-debug extension that contains certain fixes. Will keep this available until my changes are officially merged into <https://github.com/Marus/cortex-debug>
 
-See: <https://github.com/Marus/cortex-debug/pull/151>
+**WARNING:** _This package may contain stuff that is not fully tested and may not ever make it to an official release. Once you install this, you may not get automatic updates. Please check with the main repo for updates and uninstall this copy when done._
 
 ## Install from vsix
 
@@ -16,7 +16,6 @@ See: <https://github.com/Marus/cortex-debug/pull/151>
 ```bash
     code --install-extension filename.vsix
 ```
-
 ## Other stuff
 
 Directory 'demo' contains a small application for PSoC6. Interesting bits are in demo/.vscode directory. You will have to modify path names in launch.json, setting.json, etc.
