@@ -1,0 +1,21 @@
+{
+  "name": "svddump",
+  "version": "1.0.0",
+  "description": "Simple SVD utility",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Haneef Mohammed <haneefdm@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^12.7.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "@types/xml2js": "^0.4.4",
+    "commander": "^3.0.0"
+  }
+}

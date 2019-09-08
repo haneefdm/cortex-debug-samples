@@ -7,3 +7,5 @@
 ipch
 xDebug/
 xRelease/
+node_modules/
+dist/
