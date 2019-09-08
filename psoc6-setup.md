@@ -108,6 +108,50 @@
         "svdFile": "${workspaceRoot}/PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
         "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
     },
+    {
+        "name": "Erase (OpenOCD)",
+        "type": "cortex-debug",
+        "request": "launch",
+        "cwd": "${workspaceRoot}",
+        "executable": "PioneerKitAppFreeRTOS_mainapp/Debug/PioneerKitAppFreeRTOS_mainapp_final.elf",
+        "servertype": "openocd",
+        "searchDir": [ 
+            "${workspaceRoot}",
+            "/Applications/ModusToolbox/tools_2.0/openocd/scripts/",
+        ],
+        "configFiles": [
+            "openocd.tcl"
+        ],
+        "overrideLaunchCommands": [
+            "monitor reset init",
+            "monitor psoc6 sflash_restrictions 1",
+            "monitor erase_all",
+            "-gdb-exit"
+        ]
+    },
+    {
+        "name": "Program (OpenOCD)",
+        "type": "cortex-debug",
+        "request": "launch",
+        "cwd": "${workspaceRoot}",
+        "executable": "PioneerKitAppFreeRTOS_mainapp/Debug/PioneerKitAppFreeRTOS_mainapp_final.elf",
+        "servertype": "openocd",
+        "searchDir": [ 
+            "${workspaceRoot}",
+            "/Applications/ModusToolbox/tools_2.0/openocd/scripts/",
+        ],
+        "configFiles": [
+            "openocd.tcl"
+        ],
+        "overrideLaunchCommands": [
+            "monitor psoc6 sflash_restrictions 1",
+            "monitor program {PioneerKitAppFreeRTOS_mainapp/Debug/PioneerKitAppFreeRTOS_mainapp_final.elf}",
+            "monitor reset_config srst_only",
+            "monitor reset run",
+            "monitor psoc6.dap dpreg 0x04 0x00",
+            "-gdb-exit"
+        ],
+    }
     ```
 
 6. In your workspace directory, create a file called `openocd.tcl` with the following contents
