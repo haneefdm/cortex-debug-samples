@@ -13,6 +13,8 @@
     "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
     ```
 
+You can also set `armToolchainPath` and `serverpath` in your `launch.json`. `servarpath` is generic path of your gdb-server like openocd
+
 5. In `.vscode/launch.json`, have the following configurations. Make sure you edit the `executable` entries below and that all path names are valid for your environment.
 
     ```javascript
