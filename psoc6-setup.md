@@ -13,9 +13,9 @@
     "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
     ```
 
-You can also set `armToolchainPath` and `serverpath` in your `launch.json`. `servarpath` is generic path of your gdb-server like openocd
+    You can also set `armToolchainPath` and `serverpath` in your `launch.json`. `servarpath` is generic path of your gdb-server like openocd. You can set these in OS specific ways as well.
 
-5. In `.vscode/launch.json`, have the following configurations. Make sure you edit the `executable` entries below and that all path names are valid for your environment.
+5. In `.vscode/launch.json`, have the following configurations. __Make sure__ you edit the `executable` entries below and that all path names are valid for your environment.
 
     ```javascript
     {
@@ -63,7 +63,7 @@ You can also set `armToolchainPath` and `serverpath` in your `launch.json`. `ser
             "monitor gdb_sync",
             "stepi"
         ],
-        // svdFiles are optional can be very large.
+        // svdFiles are optional, they can be very large.
         "svdFile": "${workspaceRoot}/PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
         "runToMain": true,          // if true, program will halt at main. Not used for a restart
         "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
@@ -91,20 +91,20 @@ You can also set `armToolchainPath` and `serverpath` in your `launch.json`. `ser
         "overrideAttachCommands": [
             "set mem inaccessible-by-default off",
             "-enable-pretty-printing",
-            "monitor halt",
+            "monitor halt"
         ],
         "overrideRestartCommands": [
             "monitor reset init",
             "monitor reset run",
             "monitor sleep 200",
             "monitor psoc6 reset_halt sysresetreq",
-            "monitor script openocd.tcl",
+            "monitor script openocd.tcl"
         ],
         "postRestartSessionCommands": [
             "monitor gdb_sync",
-            "stepi",
+            "stepi"
         ],
-        // svdFiles are optional can be very large.
+        // svdFiles are optional, they can be very large.
         "svdFile": "${workspaceRoot}/PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
         "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
     },
