@@ -19,137 +19,142 @@
 
     ```javascript
     {
-        "name": "Launch PSoC6 CM4 (OpenOCD)",
-        "type": "cortex-debug",
-        "request": "launch",
-        "cwd": "${workspaceRoot}",
-        "executable": "BlinkyLED_mainapp/Debug/BlinkyLED_mainapp_final.elf",
-        "servertype": "openocd",
-        "searchDir": [
-            "${workspaceRoot}",
-            "/Applications/ModusToolbox/tools_2.0/openocd/scripts/",
-        ],
-        "configFiles": [
-            "openocd.tcl"
-        ],
-        "overrideLaunchCommands": [
-            "set mem inaccessible-by-default off",
-            "-enable-pretty-printing",
-            "monitor reset init",
-            "-target-download",             // Comment this out if you don't want to reload program
-            "monitor reset run",
-            "monitor sleep 200",
-            "monitor psoc6 reset_halt sysresetreq"
-        ],
-        "postStartSessionCommands": [       // Needed if runToMain is false
-            /*
-            // Following two commands are needed to get gdb and openocd and HW all in sync.
-            // Or, execution context (PC, stack, registers, etc.) look like they are from before reset.
-            // The stepi, is a pretend instruction that does not actually do a stepi, but MUST be done
-            // Its a documented workaround in openocd. Do a 'monitor help' to see more info
-            //
-            // An alternative command to use is "continue" instead of the following two
-            */
-            "monitor gdb_sync",
-            "stepi"
-        ],
-        "overrideRestartCommands": [
-            "monitor reset init",
-            "monitor reset run",
-            "monitor sleep 200",
-            "monitor psoc6 reset_halt sysresetreq"
-        ],
-        "postRestartSessionCommands": [
-            "monitor gdb_sync",
-            "stepi"
-        ],
-        // svdFiles are optional, they can be very large.
-        "svdFile": "${workspaceRoot}/PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
-        "runToMain": true,          // if true, program will halt at main. Not used for a restart
-        "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
-        "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
-    },
-    // When using 'attach', make sure your program is running on the board and that your executable matches
-    // the image in the chip exactly, or else strange things can happen with breakpoint, variables, etc.
-    {
-        "name": "Attach PSoC6 CM4 (OpenOCD)",
-        "type": "cortex-debug",
-        "request": "attach",
-        "cwd": "${workspaceRoot}",
-        "executable": "BlinkyLED_mainapp/Debug/BlinkyLED_mainapp_final.elf",
-        "servertype": "openocd",
-        "searchDir": [
-            "${workspaceRoot}",
-            "/Applications/ModusToolbox_2.0/tools_2.0/openocd/scripts/",
-        ],
-        "openOCDPreConfigLaunchCommands": [
-            "set ENABLE_ACQUIRE 0"
-        ],
-        "configFiles": [
-            "openocd.tcl"
-        ],
-        "overrideAttachCommands": [
-            "set mem inaccessible-by-default off",
-            "-enable-pretty-printing",
-            "monitor halt"
-        ],
-        "overrideRestartCommands": [
-            "monitor reset init",
-            "monitor reset run",
-            "monitor sleep 200",
-            "monitor psoc6 reset_halt sysresetreq"
-        ],
-        "postRestartSessionCommands": [
-            "monitor gdb_sync",
-            "stepi"
-        ],
-        // svdFiles are optional, they can be very large.
-        "svdFile": "${workspaceRoot}/PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
-        "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
-    },
-    {
-        "name": "Erase (OpenOCD)",
-        "type": "cortex-debug",
-        "request": "launch",
-        "cwd": "${workspaceRoot}",
-        "executable": "PioneerKitAppFreeRTOS_mainapp/Debug/PioneerKitAppFreeRTOS_mainapp_final.elf",
-        "servertype": "openocd",
-        "searchDir": [
-            "${workspaceRoot}",
-            "/Applications/ModusToolbox/tools_2.0/openocd/scripts/",
-        ],
-        "configFiles": [
-            "openocd.tcl"
-        ],
-        "overrideLaunchCommands": [
-            "monitor reset init",
-            "monitor psoc6 sflash_restrictions 1",
-            "monitor erase_all",
-            "-gdb-exit"
+    "version": "0.2.0",
+    "configurations": [
+            {
+                "name": "Launch PSoC6 CM4 (OpenOCD)",
+                "type": "cortex-debug",
+                "request": "launch",
+                "cwd": "${workspaceRoot}",
+                "executable": "BlinkyLED_mainapp/Debug/BlinkyLED_mainapp_final.elf",
+                "servertype": "openocd",
+                "searchDir": [
+                    "${workspaceRoot}",
+                    "/Applications/ModusToolbox/tools_2.0/openocd/scripts/",
+                ],
+                "configFiles": [
+                    "openocd.tcl"
+                ],
+                "overrideLaunchCommands": [
+                    "set mem inaccessible-by-default off",
+                    "-enable-pretty-printing",
+                    "monitor reset init",
+                    "-target-download",             // Comment this out if you don't want to reload program
+                    "monitor reset run",
+                    "monitor sleep 200",
+                    "monitor psoc6 reset_halt sysresetreq"
+                ],
+                "postStartSessionCommands": [       // Needed if runToMain is false
+                    /*
+                    // Following two commands are needed to get gdb and openocd and HW all in sync.
+                    // Or, execution context (PC, stack, registers, etc.) look like they are from before reset.
+                    // The stepi, is a pretend instruction that does not actually do a stepi, but MUST be done
+                    // Its a documented workaround in openocd. Do a 'monitor help' to see more info
+                    //
+                    // An alternative command to use is "continue" instead of the following two
+                    */
+                    "monitor gdb_sync",
+                    "stepi"
+                ],
+                "overrideRestartCommands": [
+                    "monitor reset init",
+                    "monitor reset run",
+                    "monitor sleep 200",
+                    "monitor psoc6 reset_halt sysresetreq"
+                ],
+                "postRestartSessionCommands": [
+                    "monitor gdb_sync",
+                    "stepi"
+                ],
+                // svdFiles are optional, they can be very large.
+                "svdFile": "${workspaceRoot}/PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
+                "runToMain": true,          // if true, program will halt at main. Not used for a restart
+                "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
+                "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
+            },
+            // When using 'attach', make sure your program is running on the board and that your executable matches
+            // the image in the chip exactly, or else strange things can happen with breakpoint, variables, etc.
+            {
+                "name": "Attach PSoC6 CM4 (OpenOCD)",
+                "type": "cortex-debug",
+                "request": "attach",
+                "cwd": "${workspaceRoot}",
+                "executable": "BlinkyLED_mainapp/Debug/BlinkyLED_mainapp_final.elf",
+                "servertype": "openocd",
+                "searchDir": [
+                    "${workspaceRoot}",
+                    "/Applications/ModusToolbox_2.0/tools_2.0/openocd/scripts/",
+                ],
+                "openOCDPreConfigLaunchCommands": [
+                    "set ENABLE_ACQUIRE 0"
+                ],
+                "configFiles": [
+                    "openocd.tcl"
+                ],
+                "overrideAttachCommands": [
+                    "set mem inaccessible-by-default off",
+                    "-enable-pretty-printing",
+                    "monitor halt"
+                ],
+                "overrideRestartCommands": [
+                    "monitor reset init",
+                    "monitor reset run",
+                    "monitor sleep 200",
+                    "monitor psoc6 reset_halt sysresetreq"
+                ],
+                "postRestartSessionCommands": [
+                    "monitor gdb_sync",
+                    "stepi"
+                ],
+                // svdFiles are optional, they can be very large.
+                "svdFile": "${workspaceRoot}/PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
+                "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
+            },
+            {
+                "name": "Erase (OpenOCD)",
+                "type": "cortex-debug",
+                "request": "launch",
+                "cwd": "${workspaceRoot}",
+                "executable": "PioneerKitAppFreeRTOS_mainapp/Debug/PioneerKitAppFreeRTOS_mainapp_final.elf",
+                "servertype": "openocd",
+                "searchDir": [
+                    "${workspaceRoot}",
+                    "/Applications/ModusToolbox/tools_2.0/openocd/scripts/",
+                ],
+                "configFiles": [
+                    "openocd.tcl"
+                ],
+                "overrideLaunchCommands": [
+                    "monitor reset init",
+                    "monitor psoc6 sflash_restrictions 1",
+                    "monitor erase_all",
+                    "-gdb-exit"
+                ]
+            },
+            {
+                "name": "Program (OpenOCD)",
+                "type": "cortex-debug",
+                "request": "launch",
+                "cwd": "${workspaceRoot}",
+                "executable": "PioneerKitAppFreeRTOS_mainapp/Debug/PioneerKitAppFreeRTOS_mainapp_final.elf",
+                "servertype": "openocd",
+                "searchDir": [
+                    "${workspaceRoot}",
+                    "/Applications/ModusToolbox/tools_2.0/openocd/scripts/",
+                ],
+                "configFiles": [
+                    "openocd.tcl"
+                ],
+                "overrideLaunchCommands": [
+                    "monitor psoc6 sflash_restrictions 1",
+                    "monitor program {PioneerKitAppFreeRTOS_mainapp/Debug/PioneerKitAppFreeRTOS_mainapp_final.elf}",
+                    "monitor reset_config srst_only",
+                    "monitor reset run",
+                    "monitor psoc6.dap dpreg 0x04 0x00",
+                    "-gdb-exit"
+                ],
+            }
         ]
-    },
-    {
-        "name": "Program (OpenOCD)",
-        "type": "cortex-debug",
-        "request": "launch",
-        "cwd": "${workspaceRoot}",
-        "executable": "PioneerKitAppFreeRTOS_mainapp/Debug/PioneerKitAppFreeRTOS_mainapp_final.elf",
-        "servertype": "openocd",
-        "searchDir": [
-            "${workspaceRoot}",
-            "/Applications/ModusToolbox/tools_2.0/openocd/scripts/",
-        ],
-        "configFiles": [
-            "openocd.tcl"
-        ],
-        "overrideLaunchCommands": [
-            "monitor psoc6 sflash_restrictions 1",
-            "monitor program {PioneerKitAppFreeRTOS_mainapp/Debug/PioneerKitAppFreeRTOS_mainapp_final.elf}",
-            "monitor reset_config srst_only",
-            "monitor reset run",
-            "monitor psoc6.dap dpreg 0x04 0x00",
-            "-gdb-exit"
-        ],
     }
     ```
 
