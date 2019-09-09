@@ -115,7 +115,7 @@
         "cwd": "${workspaceRoot}",
         "executable": "PioneerKitAppFreeRTOS_mainapp/Debug/PioneerKitAppFreeRTOS_mainapp_final.elf",
         "servertype": "openocd",
-        "searchDir": [ 
+        "searchDir": [
             "${workspaceRoot}",
             "/Applications/ModusToolbox/tools_2.0/openocd/scripts/",
         ],
