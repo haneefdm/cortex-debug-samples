@@ -97,8 +97,7 @@
             "monitor reset init",
             "monitor reset run",
             "monitor sleep 200",
-            "monitor psoc6 reset_halt sysresetreq",
-            "monitor script openocd.tcl"
+            "monitor psoc6 reset_halt sysresetreq"
         ],
         "postRestartSessionCommands": [
             "monitor gdb_sync",
