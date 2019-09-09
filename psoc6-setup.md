@@ -7,13 +7,13 @@
 
     ```javascript
     // path where objdump and gdb can be found
-    "cortex-debug.armToolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin/",
+    "cortex-debug.armToolchainPath": "/Applications/ModusToolbox_2.0/tools_2.0/gcc-7.2.1/bin/",
     // gdb-server-paths
-    "cortex-debug.openocdPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+    "cortex-debug.openocdPath": "/Applications/ModusToolbox_2.0/tools_2.0/openocd/bin/openocd",
     "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
     ```
 
-    You can also set `armToolchainPath` and `serverpath` in your `launch.json`. `servarpath` is generic path of your gdb-server like openocd. You can set these in OS specific ways as well.
+    You can also set `armToolchainPath` and `serverpath` in your `launch.json`. In `launch.json`, `servarpath` is generic path of your gdb-server like openocd. You can set these in OS specific ways as well.
 
 5. In `.vscode/launch.json`, have the following configurations. __Make sure__ you edit the `executable` entries below and that all path names are valid for your environment.
 
