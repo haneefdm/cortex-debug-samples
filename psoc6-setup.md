@@ -19,8 +19,8 @@
 
     ```javascript
     {
-    "version": "0.2.0",
-    "configurations": [
+        "version": "0.2.0",
+        "configurations": [
             {
                 "name": "Launch PSoC6 CM4 (OpenOCD)",
                 "type": "cortex-debug",
