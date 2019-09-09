@@ -41,7 +41,7 @@
             "monitor sleep 200",
             "monitor psoc6 reset_halt sysresetreq"
         ],
-        "postStartSessionCommands": [
+        "postStartSessionCommands": [       // Needed if runToMain is false
             /*
             // Following two commands are needed to get gdb and openocd and HW all in sync.
             // Or, execution context (PC, stack, registers, etc.) look like they are from before reset.
