@@ -16,7 +16,4 @@ File cortex-debug-0.X.Y.vsix is my latest cortex-debug extension that contains c
 ```bash
     code --install-extension filename.vsix
 ```
-## Other stuff
-
-Directory 'demo' contains a small application for PSoC6. Interesting bits are in demo/.vscode directory. You will have to modify path names in launch.json, setting.json, etc.
 
