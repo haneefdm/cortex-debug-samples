@@ -67,7 +67,7 @@
                     "stepi"
                 ],
                 // svdFiles are optional, they can be very large.
-                "svdFile": "${workspaceRoot}/PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
+                "svdFile": "PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
                 "runToMain": true,          // if true, program will halt at main. Not used for a restart
                 "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
                 "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
@@ -107,7 +107,7 @@
                     "stepi"
                 ],
                 // svdFiles are optional, they can be very large.
-                "svdFile": "${workspaceRoot}/PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
+                "svdFile": "PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
                 "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
             },
             {
