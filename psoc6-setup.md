@@ -7,13 +7,13 @@
 
     ```javascript
     // path where objdump and gdb can be found
-    "cortex-debug.armToolchainPath": "/Applications/ModusToolbox_2.0/tools/gcc-7.2.1-1.0/bin/",
+    "cortex-debug.armToolchainPath": "/Applications/ModusToolbox_2.0/tools_2.0/gcc-7.2.1/bin/",
     // gdb-server-paths
-    "cortex-debug.openocdPath": "/Applications/ModusToolbox_2.0/tools/openocd-2.2/bin/openocd",
+    "cortex-debug.openocdPath": "/Applications/ModusToolbox_2.0/tools_2.0/openocd/bin/openocd",
     "cortex-debug.JLinkGDBServerPath": "/Applications/SEGGER/JLink_V644a/JLinkGDBServerCLExe",
     ```
 
-    You can also set `armToolchainPath` and `serverpath` in your `launch.json`. `servarpath` is generic path of your gdb-server like openocd. You can set these in OS specific ways as well.
+    You can also set `armToolchainPath` and `serverpath` in your `launch.json`. In `launch.json`, `servarpath` is generic path of your gdb-server like openocd. You can set these in OS specific ways as well.
 
 5. In `.vscode/launch.json`, have the following configurations. __Make sure__ you edit the `executable` entries below and that all path names are valid for your environment.
 
@@ -30,7 +30,7 @@
                 "servertype": "openocd",
                 "searchDir": [
                     "${workspaceRoot}",
-                    "/Applications/ModusToolbox/tools_2.0/openocd/scripts/",
+                    "/Applications/ModusToolbox/tools_2.0/openocd/scripts/"
                 ],
                 "configFiles": [
                     "openocd.tcl"
@@ -66,8 +66,8 @@
                     "monitor gdb_sync",
                     "stepi"
                 ],
-                // svdFiles are optional, they can be very large.
-                "svdFile": "${workspaceRoot}/PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
+                // svdFile is optional, it can be very large.
+                "svdFile": "PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
                 "runToMain": true,          // if true, program will halt at main. Not used for a restart
                 "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
                 "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
@@ -83,7 +83,7 @@
                 "servertype": "openocd",
                 "searchDir": [
                     "${workspaceRoot}",
-                    "/Applications/ModusToolbox_2.0/tools_2.0/openocd/scripts/",
+                    "/Applications/ModusToolbox_2.0/tools_2.0/openocd/scripts/"
                 ],
                 "openOCDPreConfigLaunchCommands": [
                     "set ENABLE_ACQUIRE 0"
@@ -106,8 +106,8 @@
                     "monitor gdb_sync",
                     "stepi"
                 ],
-                // svdFiles are optional, they can be very large.
-                "svdFile": "${workspaceRoot}/PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
+                // svdFile is optional, it can be very large.
+                "svdFile": "PSoC_6_Hello_World/libs/psoc6pdl/devices/svd/psoc6_01.svd",
                 "showDevDebugOutput": false,// Shows output of GDB, helpful when something is not working right
             },
             {
@@ -119,7 +119,7 @@
                 "servertype": "openocd",
                 "searchDir": [
                     "${workspaceRoot}",
-                    "/Applications/ModusToolbox/tools_2.0/openocd/scripts/",
+                    "/Applications/ModusToolbox/tools_2.0/openocd/scripts/"
                 ],
                 "configFiles": [
                     "openocd.tcl"
@@ -140,7 +140,7 @@
                 "servertype": "openocd",
                 "searchDir": [
                     "${workspaceRoot}",
-                    "/Applications/ModusToolbox/tools_2.0/openocd/scripts/",
+                    "/Applications/ModusToolbox/tools_2.0/openocd/scripts/"
                 ],
                 "configFiles": [
                     "openocd.tcl"
