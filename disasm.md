@@ -4,11 +4,11 @@
 
 In the requirements below, **none** of them are currently possible with any VSCode debugger. Even with Cortex-Debug RE#1 is not fully met -- not intermixed source info.
 
-1. Be able to display disassembly with any original source code intermixed.
-2. Be able to track the call-stack window's current frame if any
-3. Ability to show the current stopped location (if any)
-4. Ability to set/clear breakpoints in disassembly window
-5. Ability to do stepi/nexti using the same debug buttons/commands as step/next. No new UI elements will be needed or desired. If the active editor is the disassembly window, then a stepi/nexti will happen. After a stepi/nexti, we would want the active editor to remain as is and not switch to actual source code. Step-out and continue will work normally ie. not dependent on the active editor. Would be nice if Step-out worked like stepi/nexti.
+1. Display disassembly with any original source code intermixed.
+2. Track the call-stack window's current frame if any
+3. Show the current stopped location (if any)
+4. Set/clear breakpoints in disassembly window
+5. Do stepi/nexti using the same debug buttons/commands as step/next. No new UI elements will be needed or desired. If the active editor is the disassembly window, then a stepi/nexti will happen. After a stepi/nexti, we would want the active editor to remain as is and not switch to actual source code. Step-out and continue will work normally ie. not dependent on the active editor. Would be nice if Step-out worked like stepi/nexti.
 6. Perform lazy/smart loading of disassembly. Be performant with response time measured under 100ms.
 7. Perform smart scrolling -- support several instructions before and after the current viewport. Ideally, this should be 1-3 view-ports before and after
 8. Do appropriate color highlighting to clearly show address, instructions and source code. Even source code syntax highlighting would be nice
