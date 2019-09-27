@@ -23,7 +23,7 @@ There are three major parts to the overall functionality
 - The DAP already does the following:
 
   - Whenever the debuggee (target) is halted for any reason (breakpoint, pause, exception, etc.). It notifies and provides the frontend with the current thread/frame information.
-  - Foreach item in the frame, there is a source document/line-info associated with it. Or it is a NULL document.
+  - Foreach frame for a given thread/stack, there is a source document/line-info associated with it. Or it is a NULL document.
   - The NULL document can be replaced with a URI that represents a disassembly window and location would be the address (program counter). This is what currently happens in Cortex-Debug (CD). cpptools has no equivalent (yet)!
 
 ## Disassembly window
