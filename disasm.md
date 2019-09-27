@@ -19,12 +19,13 @@ There are three major parts to the overall functionality
 
 - __Debug Adapter__: Cortex-Debug or MIEngine are debug adapters that support the Debug Adapter Protocol (DAP).
 - __Debug Frontend__: Currently, that would be VSCode. It hosts the various debug windows (panels) like call-stack, variables, breakpoints, etc.
-- __Debugger Extension__: This is a support module that provides the __Debug Frontend__ with the DAP and does other housekeeping frontend chores. Cortex-Debug (CD) and cpptools are example of this. When the user clicks on a particular frame, VSCode tries to open that source file.
-- The DAP already does the following:
+- __Debugger Extension__: This is a support module that provides the __Debug Frontend__ with the DAP and does other housekeeping frontend chores. Cortex-Debug (CD) and cpptools are example of this.
 
-  - Whenever the debuggee (target) is halted for any reason (breakpoint, pause, exception, etc.). It notifies and provides the frontend with the current thread/frame information.
-  - Foreach frame for a given thread/stack, there is a source document/line-info associated with it. Or it is a NULL document.
-  - The NULL document can be replaced with a URI that represents a disassembly window and location would be the address (program counter). This is what currently happens in Cortex-Debug (CD). cpptools has no equivalent (yet)!
+When the user clicks on a particular frame, VSCode tries to open that source file. The DAP already does the following:
+
+- Whenever the debuggee (target) is halted for any reason (breakpoint, pause, exception, etc.). It notifies and provides the frontend with the current thread/frame information.
+- Foreach frame for a given thread/stack, there is a source document/line-info associated with it. Or it is a NULL document.
+- The NULL document can be replaced with a URI that represents a disassembly window and location would be the address (program counter). This is what currently happens in Cortex-Debug (CD). cpptools has no equivalent (yet)!
 
 ## Disassembly window
 
