@@ -2,7 +2,7 @@
 
 ## Requirements
 
-In the requirements below, **none** of them are currently possible with any VSCode debugger. Even with Cortex-Debug RE#1 is not fully met -- not intermixed source info.
+In the requirements below, **none** of them are currently possible with any VSCode debugger. Even with Cortex-Debug RE#1 is not fully met -- not intermixed source info. All of the following imply a debug session.
 
 1. Display disassembly with any original source code intermixed.
 2. Track the call-stack window's current frame if any
